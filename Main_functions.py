@@ -33,7 +33,8 @@ def send_message(message):  # 向抖音直播间发送信息
     try:
         # 等待文本区域元素加载并找到
         text_element = WebDriverWait(chrome, 10).until(
-            EC.presence_of_element_located((By.XPATH, '//textarea[@class="webcast-chatroom___textarea"]'))
+            EC.presence_of_element_located(
+                (By.XPATH, '//textarea[@class="webcast-chatroom___textarea"]'))
         )
         text_element.clear()
         text_element.send_keys(message)
@@ -74,11 +75,14 @@ def monitor_screen():  # 获取用户在抖音直播间发送的信息
 
                     try:
                         # 尝试获取用户名
-                        username_element = latest_element.find_element(By.CSS_SELECTOR, '.u2QdU6ht')
-                        username = username_element.text.split('：')[0]  # 去掉用户名中的 `：`
+                        username_element = latest_element.find_element(
+                            By.CSS_SELECTOR, '.u2QdU6ht')
+                        username = username_element.text.split('：')[
+                            0]  # 去掉用户名中的 `：`
 
                         # 尝试获取评论
-                        comment_element = latest_element.find_element(By.CSS_SELECTOR, '.WsJsvMP9')
+                        comment_element = latest_element.find_element(
+                            By.CSS_SELECTOR, '.WsJsvMP9')
                         comment = comment_element.text
 
                         # 将新数据作为新行添加到 data_list 中
@@ -88,7 +92,8 @@ def monitor_screen():  # 获取用户在抖音直播间发送的信息
                         # print(f"用户名: {username} | 评论: {comment}")
                     except Exception as inner_e:
                         # 如果在尝试获取用户名或评论时出错，继续到下一个元素
-                        print("## 提取信息时发生错误，可能是没找到类别，不用在意，可以查看这段代码的位置进行调试 ##")  # 防止一些非信息元素出bug
+                        # 防止一些非信息元素出bug
+                        print("## 提取信息时发生错误，可能是没找到类别，不用在意，可以查看这段代码的位置进行调试 ##")
                         inner_e = inner_e  # 这段变量没有任何用处，只是防止报错，如果要调试，可以删除这段代码
                         # print(f"提取信息时发生错误: {inner_e}")  # 调试使用
                         continue
@@ -164,7 +169,8 @@ def run_main_thread():  # 主运行部分
 
                 if len(data_list) > data_list_round_count:
                     # 调用用户综合数据，user_typ_complex是发送给coze机器人的，username是用户姓名，comment是用户评论
-                    user_typ_complex, username, comment = user_typ_transfer(data_list_round_count)
+                    user_typ_complex, username, comment = user_typ_transfer(
+                        data_list_round_count)
                     user_typ = user_typ_complex  # 获取用户输入
                     print(user_typ)
                     result = main_req(user_typ, "你的客服id")  # 获取机器人回复
@@ -180,7 +186,8 @@ def run_main_thread():  # 主运行部分
                         # send_message(remaining_chars)
 
                         # 将用户信息以及机器人回复储存到Excel
-                        append_to_excel('data.xlsx', username, comment, remaining_chars)
+                        append_to_excel('data.xlsx', username,
+                                        comment, remaining_chars)
                         print(remaining_chars)
 
                     data_list_round_count += 1
