@@ -25,6 +25,6 @@
     常见问题
 </h2>
 
-<br><br>
+<br><br><br><br>
 
-<h1 align="center">部署教程</h1>
+## 部署教程
