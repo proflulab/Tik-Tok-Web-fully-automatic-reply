@@ -17,19 +17,10 @@
 
 <h1 align="center">概述</h1>
 
-<h2 align="center">部署教程    原理展示    常见问题</h2>
+
 
 <h2 align="center" style="text-indent: 20px; margin: 0; padding: 0;">
     部署教程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     原理展示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     常见问题
 </h2>
-
-<h2 class="spaced-text" align="center">部署教程 原理展示 常见问题</h2>
-
-.spaced-text {
-    margin: 0;
-    padding: 0;
-    letter-spacing: 20px; /* 设置字间距 */
-    display: inline-block; /* 确保元素占据的宽度足够 */
-}
