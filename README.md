@@ -6,7 +6,6 @@
 
 <h3 align="center">用户可以使用Python代码实现全自动化，登录、抓取、发送信息、机器人回复
 
-</h3>
 <p align="center">
   <a href="https://github.com/proflulab/Tik-Tok-Web-fully-automatic-reply">
     <img src="https://img.shields.io/github/workflow/status/r-spacex/SpaceX-API/Test?style=flat-square" alt="GitHub Workflow Status">
@@ -21,4 +20,3 @@
     <img src="https://img.shields.io/badge/interface-REST-brightgreen.svg?longCache=true&style=flat-square" alt="REST Interface">
   </a>
 </p>
-
