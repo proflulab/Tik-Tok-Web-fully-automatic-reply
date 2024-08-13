@@ -53,13 +53,16 @@ pip install pandas openpyxl
 
 <br>
 
-右键PyCharm快捷方式，选择属性，获取安装路径
+右键**PyCharm快捷方式**，选择**属性**，获取安装路径
 
 ![image](https://github.com/user-attachments/assets/3f36b4f5-ac49-459f-8807-b53f6105fd9e)
 
+<br>
 
+右键**此电脑**，选择**属性**，点击高级系统设置，选择高级，选择环境变量
 
+![image](https://github.com/user-attachments/assets/85fe830d-a8a5-4d19-aef2-221552b7f89f)
 
-
+![image](https://github.com/user-attachments/assets/448fadbe-1667-4fd0-bdbc-e06b5e8f0d34)
 
 
