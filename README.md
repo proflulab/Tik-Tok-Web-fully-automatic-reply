@@ -84,6 +84,28 @@ pip install pandas openpyxl
 
 安装**Chrome**在**Path**的位置相同，**Path**用于使计算机调用此软件
 
+<br><br>
+
+## 获取抖音登录Cookie
+
+<br>
+
+首先，这需要用到**python**代码，找到文件中的Automatically_obtain_login.py下载下来，运行一下
+运行后，你需要**扫描登录**你的抖音账户，在输出框输入**任意按键**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
