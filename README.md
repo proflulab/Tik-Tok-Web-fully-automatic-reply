@@ -33,6 +33,8 @@
 
 ## 安装python库
 
+<br>
+
 安装用于获取网页端元素位置的库
 
 ```
@@ -44,6 +46,9 @@ pip install selenium
 ```
 pip install pandas openpyxl
 ```
+
+<br>
+
 ## 安装PyCharm和Chrome到path环境
 
 
