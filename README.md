@@ -29,6 +29,4 @@
 
 <h1 align="center">部署教程</h1>
 
-<br>
-
 <h2 align="center">安装python库</h2>
