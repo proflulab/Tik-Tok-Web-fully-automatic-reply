@@ -71,8 +71,6 @@ pip install pandas openpyxl
 </div>
 
 <p>
-    <img src="https://github.com/user-attachments/assets/3f36b4f5-ac49-459f-8807-b53f6105fd9e" alt="Image 1" style="display: inline; width: 200px;"/>
-    <img src="https://github.com/user-attachments/assets/85fe830d-a8a5-4d19-aef2-221552b7f89f" alt="Image 2" style="display: inline; width: 200px;"/>
-    <img src="https://github.com/user-attachments/assets/448fadbe-1667-4fd0-bdbc-e06b5e8f0d34" alt="Image 3" style="display: inline; width: 200px;"/>
+  <img src="https://github.com/user-attachments/assets/85fe830d-a8a5-4d19-aef2-221552b7f89f" alt="image1" style="margin-right: 20px;">
+  <img src="https://github.com/user-attachments/assets/448fadbe-1667-4fd0-bdbc-e06b5e8f0d34" alt="image2">
 </p>
-
