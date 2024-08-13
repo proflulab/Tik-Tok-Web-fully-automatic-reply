@@ -80,7 +80,9 @@ pip install pandas openpyxl
   <img src="https://github.com/user-attachments/assets/711a90c9-148f-4279-b575-4d49d0782f3e" alt="Image 2" style="width: 45%; height: auto;">
 </div>
 
+<br><br>
 
+安装**Chrome**在**Path**的位置相同，**Path**用于使计算机调用此软件
 
 
 
