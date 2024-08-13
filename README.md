@@ -70,3 +70,24 @@ pip install pandas openpyxl
   <img src="https://github.com/user-attachments/assets/85fe830d-a8a5-4d19-aef2-221552b7f89f" alt="Image 1" style="width: 45%; height: auto;">
   <img src="https://github.com/user-attachments/assets/448fadbe-1667-4fd0-bdbc-e06b5e8f0d34" alt="Image 2" style="width: 45%; height: auto;">
 </div>
+
+<br><br>
+
+找到上方的**XXX的用户变量**，找到**Path**并**双击**它。点击新建，将复制的安装路径（除去exe文件）粘贴上去
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/user-attachments/assets/99dbc566-4d1b-4ac9-906d-d7383277d09a" alt="Image 1" style="width: 45%; height: auto;">
+  <img src="https://github.com/user-attachments/assets/711a90c9-148f-4279-b575-4d49d0782f3e" alt="Image 2" style="width: 45%; height: auto;">
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
