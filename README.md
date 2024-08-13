@@ -44,7 +44,7 @@ pip install selenium
 ```
 pip install pandas openpyxl
 ```
-
+## 安装**PyCharm**和**Chrome**到**path**环境
 
 
 
