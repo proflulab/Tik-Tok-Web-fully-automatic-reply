@@ -27,7 +27,7 @@
 
 <br><br><br><br>
 
-# 部署教程
+<h1 align="center">部署教程</h1>
 
 <br>
 
