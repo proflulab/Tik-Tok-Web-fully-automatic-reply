@@ -90,10 +90,13 @@ pip install pandas openpyxl
 
 <br>
 
-首先，这需要用到**python**代码，找到文件中的Automatically_obtain_login.py下载下来，运行一下。
+首先，这需要用到**python**代码，找到GitHub文件中的Automatically_obtain_login.py下载下来，运行一下。
 运行后，你需要**扫描登录**你的抖音账户，在输出框输入**任意按键**，就能得到你的**登录Cookie**，**请不要发给任何人**
 
-
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/user-attachments/assets/d12d031f-2da7-4a40-b0b9-5c87effe995c" alt="Image 1" style="width: 45%; height: auto;">
+  <img src="https://github.com/user-attachments/assets/5e62f1c9-e5a7-41f2-9f4d-b69879cfdb7e" alt="Image 2" style="width: 45%; height: auto;">
+</div>
 
 
 
