@@ -90,8 +90,8 @@ pip install pandas openpyxl
 
 <br>
 
-首先，这需要用到**python**代码，找到文件中的Automatically_obtain_login.py下载下来，运行一下
-运行后，你需要**扫描登录**你的抖音账户，在输出框输入**任意按键**
+首先，这需要用到**python**代码，找到文件中的Automatically_obtain_login.py下载下来，运行一下。
+运行后，你需要**扫描登录**你的抖音账户，在输出框输入**任意按键**，就能得到你的**登录Cookie**，**请不要发给任何人**
 
 
 
