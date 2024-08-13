@@ -1,4 +1,4 @@
-<p align="center"><![unnamed](https://github.com/user-attachments/assets/b69b1067-018b-42fd-9562-a7c2998e4dca)></p>
+<p align="center"><https://github.com/user-attachments/assets/b69b1067-018b-42fd-9562-a7c2998e4dca></p>
 
 <h1 align="center">抖音网页全自动回复</h1>
 
