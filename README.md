@@ -26,3 +26,10 @@
 </h2>
 
 <h2 class="spaced-text" align="center">部署教程 原理展示 常见问题</h2>
+
+.spaced-text {
+    margin: 0;
+    padding: 0;
+    letter-spacing: 20px; /* 设置字间距 */
+    display: inline-block; /* 确保元素占据的宽度足够 */
+}
