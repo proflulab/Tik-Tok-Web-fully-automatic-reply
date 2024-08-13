@@ -33,13 +33,17 @@
 
 ## 安装python库
 
-用于获取网页端元素位置的库
+安装用于获取网页端元素位置的库
 
 ```
 pip install selenium
 ```
 
+安装存储到Excel里面的库
 
+```
+pip install pandas openpyxl
+```
 
 
 
