@@ -18,3 +18,31 @@
 <h1 align="center">概述</h1>
 
 <h2 align="center">部署教程 - 原理展示 - 常见问题</h2>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .title-container {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .title-container h2 {
+            display: inline;
+            margin: 0 40px; /* Adjust the margin to control the spacing between titles */
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="title-container">
+        <h2>部署教程</h2>
+        <h2>原理展示</h2>
+        <h2>常见问题</h2>
+    </div>
+</body>
+</html>
