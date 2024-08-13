@@ -51,7 +51,7 @@ pip install pandas openpyxl
 
 <img src="https://github.com/user-attachments/assets/e9f05a0c-f993-484c-a363-434dd050fa35" alt="image" style="width: 600px; height: auto;">
 
-<br>
+<br><br>
 
 ## 安装PyCharm和Chrome到path环境
 
@@ -61,7 +61,7 @@ pip install pandas openpyxl
 
 <img src="https://github.com/user-attachments/assets/3f36b4f5-ac49-459f-8807-b53f6105fd9e" alt="image" style="width: 600px; height: auto;">
 
-<br>
+<br><br>
 
 右键**此电脑**，选择**属性**，点击高级系统设置，选择高级，选择环境变量
 
