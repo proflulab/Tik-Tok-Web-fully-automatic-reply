@@ -47,6 +47,10 @@ pip install selenium
 pip install pandas openpyxl
 ```
 
+粘贴在**PyCharm**的**Terminal**里面
+
+<img src="https://github.com/user-attachments/assets/e9f05a0c-f993-484c-a363-434dd050fa35" alt="image" style="width: 600px; height: auto;">
+
 <br>
 
 ## 安装PyCharm和Chrome到path环境
