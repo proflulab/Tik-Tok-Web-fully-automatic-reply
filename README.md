@@ -32,3 +32,21 @@
 <br>
 
 ## 安装python库
+
+用于获取网页端元素位置的库
+
+```
+pip install selenium
+```
+
+
+
+
+
+
+
+
+
+
+
+
