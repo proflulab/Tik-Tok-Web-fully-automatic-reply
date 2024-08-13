@@ -17,32 +17,4 @@
 
 <h1 align="center">概述</h1>
 
-<h2 align="center">部署教程 - 原理展示 - 常见问题</h2>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .title {
-            text-align: center;
-            font-size: 24px; /* Adjust font size as needed */
-        }
-        .title span {
-            margin: 0 40px; /* Adjust the spacing between the items */
-            display: inline-block;
-        }
-    </style>
-    <title>Document</title>
-</head>
-<body>
-    <h2 class="title">
-        <span>部署教程</span>
-        <span>原理展示</span>
-        <span>常见问题</span>
-    </h2>
-</body>
-</html>
-
+<h2 align="center">部署教程    原理展示    常见问题</h2>
