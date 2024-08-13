@@ -19,4 +19,4 @@
 
 <h2 align="center">部署教程    原理展示    常见问题</h2>
 
-<h2 align="center" style="letter-spacing: 20em;">部署教程    原理展示    常见问题</h2>
+<h2 align="center" style="letter-spacing: 10px;">部署教程    原理展示    常见问题</h2>
