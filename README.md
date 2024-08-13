@@ -57,20 +57,13 @@ pip install pandas openpyxl
 
 ![image](https://github.com/user-attachments/assets/3f36b4f5-ac49-459f-8807-b53f6105fd9e)
 
+<img src="https://github.com/user-attachments/assets/3f36b4f5-ac49-459f-8807-b53f6105fd9e" alt="image" style="width: 300px; height: auto;">
+
 <br>
 
 右键**此电脑**，选择**属性**，点击高级系统设置，选择高级，选择环境变量
 
-![image](https://github.com/user-attachments/assets/85fe830d-a8a5-4d19-aef2-221552b7f89f)
-
-![image](https://github.com/user-attachments/assets/448fadbe-1667-4fd0-bdbc-e06b5e8f0d34)
-
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/user-attachments/assets/85fe830d-a8a5-4d19-aef2-221552b7f89f" alt="Image 1" style="width: 45%; height: auto;">
-  <img src="https://github.com/user-attachments/assets/448fadbe-1667-4fd0-bdbc-e06b5e8f0d34" alt="Image 2" style="width: 45%; height: auto;">
-</div>
-
-<div style="display: flex;">
-  <img src="https://github.com/user-attachments/assets/85fe830d-a8a5-4d19-aef2-221552b7f89f" alt="Image 1" style="width: 45%; height: auto; margin-right: 30px;">
   <img src="https://github.com/user-attachments/assets/448fadbe-1667-4fd0-bdbc-e06b5e8f0d34" alt="Image 2" style="width: 45%; height: auto;">
 </div>
