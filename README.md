@@ -19,5 +19,8 @@
 
 <h2 align="center">部署教程    原理展示    常见问题</h2>
 
-<h2 align="center" style="letter-spacing: 10px !important;">部署教程    原理展示    常见问题</h2>
+.spacing-h2 {
+    letter-spacing: 10px;
+}
 
+<h2 class="spacing-h2" align="center">部署教程    原理展示    常见问题</h2>
