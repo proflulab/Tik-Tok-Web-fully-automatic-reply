@@ -51,7 +51,11 @@ pip install pandas openpyxl
 
 ## 安装PyCharm和Chrome到path环境
 
+<br>
 
+右键PyCharm快捷方式，选择属性，获取安装路径
+
+![image](https://github.com/user-attachments/assets/3f36b4f5-ac49-459f-8807-b53f6105fd9e)
 
 
 
