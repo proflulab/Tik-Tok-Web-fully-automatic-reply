@@ -9,8 +9,4 @@
 <p align="center">
   <a href="https://github.com/Luckymingxuan">
     <img src="https://img.shields.io/github/workflow/status/r-spacex/SpaceX-API/Test?style=flat-square" alt="GitHub Workflow Status">
-  </a>
-  <a href="https://github.com/proflulab/Tik-Tok-Web-fully-automatic-reply/releases">
-    <img src="https://img.shields.io/github/release/proflulab/Tik-Tok-Web-fully-automatic-reply/v0.0.1.svg?longCache=true&style=flat-square" alt="Release v0.0.1">
-  </a>
 </p>
