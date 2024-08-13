@@ -26,23 +26,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        .title-container {
+        .title {
             text-align: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            font-size: 24px; /* Adjust font size as needed */
         }
-        .title-container h2 {
-            display: inline;
-            margin: 0 40px; /* Adjust the margin to control the spacing between titles */
+        .title span {
+            margin: 0 40px; /* Adjust the spacing between the items */
+            display: inline-block;
         }
     </style>
     <title>Document</title>
 </head>
 <body>
-    <div class="title-container">
-        <h2>部署教程</h2>
-        <h2>原理展示</h2>
-        <h2>常见问题</h2>
-    </div>
+    <h2 class="title">
+        <span>部署教程</span>
+        <span>原理展示</span>
+        <span>常见问题</span>
+    </h2>
 </body>
 </html>
