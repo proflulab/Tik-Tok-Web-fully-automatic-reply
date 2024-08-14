@@ -101,6 +101,38 @@ pip install pandas openpyxl
 
 <img src="https://github.com/user-attachments/assets/5e62f1c9-e5a7-41f2-9f4d-b69879cfdb7e" alt="image" style="width: 600px; height: auto;">
 
+<br><br>
+
+## 编辑**coze**机器人
+
+<br>
+
+首先登录到[coze](https://coze.cn),找到**个人空间**，在右上角找到并点击**创建Bot**，这个我们稍后会用到。这里需要你创建一个工作流
+
+<img src="https://github.com/user-attachments/assets/6d1f2b08-62d7-46d3-bdc8-9d95c0cc1f67" alt="image" style="width: 600px; height: auto;">
+
+<br>
+
+<img src="https://github.com/user-attachments/assets/7316a673-c883-42ad-bc79-a62a5f9e1d84" alt="image" style="width: 600px; height: auto;">
+
+<br>
+
+<img src="https://github.com/user-attachments/assets/4ac4ba06-3a1d-4527-bf00-790f19dd2be5" alt="image" style="width: 600px; height: auto;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
