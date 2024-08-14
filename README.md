@@ -103,7 +103,7 @@ pip install pandas openpyxl
 
 <br><br>
 
-## 编辑**coze**机器人
+## 创建**Coze**工作流
 
 <br>
 
@@ -121,6 +121,8 @@ pip install pandas openpyxl
 
 <br><br>
 
+## 获取**CozeAPI**
+
 好的你现在已经掌握了基本技巧，现在开始获取coze**api**,找到主页点击左下角**CozeAPI**
 
 <br>
@@ -135,7 +137,10 @@ pip install pandas openpyxl
 
 <br><br>
 
-现在要编辑**客服机器人**，找到你刚刚创建的**机器人**，
+## 获取**Coze**
+
+现在要编辑**客服机器人**，找到你刚刚创建的**机器人**，设置为**Agent （工作流模式）**
+
 
 
 
