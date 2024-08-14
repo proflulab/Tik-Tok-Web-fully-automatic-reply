@@ -137,10 +137,13 @@ pip install pandas openpyxl
 
 <br><br>
 
-## 获取**Coze**
+## 设置**CozeBot**
 
-现在要编辑**客服机器人**，找到你刚刚创建的**机器人**，设置为**Agent （工作流模式）**
+<br>
 
+现在要编辑**客服机器人**，找到你刚刚创建的**机器人**，设置为**Agent （工作流模式）**,并且添加你创建的**工作流**
+
+<img src="https://github.com/user-attachments/assets/2f767492-992b-49f2-9f64-090c1ed1d65b" alt="image" style="width: 600px; height: auto;">
 
 
 
