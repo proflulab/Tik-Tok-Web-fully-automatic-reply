@@ -146,41 +146,13 @@ pip install pandas openpyxl
 <img src="https://github.com/user-attachments/assets/2f767492-992b-49f2-9f64-090c1ed1d65b" alt="image" style="width: 600px; height: auto;">
 
 
+## 待开发
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- 对接多维表，数据实时同步至多维表（瀚中，8月22日）
+- 优化问题
+  - 优化问句判断方案及其速度
+  - 优化代码，分模块编写，增加可阅读性和开发便利性
+  - ...
+- 数据集训练
+  - 问答数据准确度达到75%（尹航，8月22日）
+- 增加敏感词过滤模块
