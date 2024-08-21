@@ -321,11 +321,11 @@ def run_main_thread_reply():  # 机器人回复线程
                     # 调用用户综合数据，user_typ_complex是发送给coze机器人的，username是用户姓名，comment是用户评论
                     user_name, comment, question_judgment = user_typ_transfer(data_list_round_count)
 
-                    while question_judgment in ["", None]:  # 检查是否为空字符串或 None
+                    while question_judgment == "":  # 检查是否为空字符串
                         # 等待 0.01 秒钟后再检查
                         time.sleep(0.01)
                         # 查看是否判断完毕
-                        question_judgment = user_typ_transfer(data_list_round_count)
+                        user_name, comment, question_judgment = user_typ_transfer(data_list_round_count)
 
                     # 检查 result 是否等于 "是问句"
                     if question_judgment == "是问句":
@@ -339,13 +339,13 @@ def run_main_thread_reply():  # 机器人回复线程
                         # send_message(clean_message)  # 去除特殊符号在发送
 
                         # 将用户信息以及机器人回复储存到data_list
-                        data_list[data_list_round_count][3] = [result]
+                        data_list[data_list_round_count][3] = result
 
                         # 将用户信息以及机器人回复储存到Excel
                         append_to_excel('data.xlsx', user_name, comment, question_judgment, result)
-
                     else:
-                        # 将用户信息以及机器人回复储存到Excel
+
+                        # 将用户信息以及句子类型储存到Excel
                         append_to_excel('data.xlsx', user_name, comment, question_judgment, "")
 
                     data_list_round_count += 1
@@ -367,12 +367,7 @@ def user_typ_transfer(data_list_round_count):  # 获取并且转换列表内的�
     data_row = data_list[data_list_round_count]
     user_name = data_row[0]  # 用户名字
     comment = data_row[1]  # 用户发送的信息
-
-    # 检查 data_row[2] 是否为空值
-    if data_row[2] not in [None, ""]:  # 如果不是空值那么返回判断结果
-        question_judgment = data_row[2]
-    else:
-        question_judgment = None
+    question_judgment = data_row[2]  # 返回判断问句结果
 
     # 返回格式化的字符串
     return user_name, comment, question_judgment
