@@ -40,8 +40,9 @@ def is_question(sentence):
         return None
 
     # 常见的中文疑问词集合
-    chinese_question_words = {"吗", "么", "什么", "怎么", "为什么", "是否", "哪", "几", "多少", "多大", "谁", "哪儿", "能否",
-                              "哪里", "哪个", "何时", "怎样", "咋样", "有何", "有么", "对吧", "好吗", "如何", "为啥", "难道", "有没有"}
+    chinese_question_words = {"吗", "么", "什么", "怎么", "为什么", "是否", "哪", "几", "多少", "多大", "谁", "啥", "哪儿",
+                              "能否", "哪里", "哪个", "何时", "怎样", "咋样", "有何", "有么", "对吧", "好吗", "如何", "为啥",
+                              "难道", "有没有"}
 
     # 常见英文疑问词集合
     english_question_words = {"what", "how", "why", "is", "are", "does", "do", "did", "can", "could", "will",
@@ -50,6 +51,7 @@ def is_question(sentence):
     # 常见的中英文问句短语
     question_phrases = ["你觉得呢", "应该可以吧", "你认为呢", "行不行", "是不是", "可以吗", "能不能", "好不好",
                         "会不会", "这样行吗", "可以不", "对不对", "难道不", "该如何", "怎么办", "这样不好吧",
+                        "可不可以",
                         "你觉得", "你怎么看", "行了吧", "aren't you", "isn't it", "could it be", "how about"]
 
     # 过滤侮辱性或无意义的短语
@@ -82,7 +84,7 @@ def is_question(sentence):
         return "是问句"
 
     # 检查隐含疑问语气
-    hidden_question_patterns = [r".*了没有$", r".*了没$", r".*吗$", r"有没有.*", r".*咋.*"]
+    hidden_question_patterns = [r".*了没有$", r".*了没$", r".*吗$", r"有没有.*", r".*咋.*", r".*行不.*"]
     if any(re.search(pattern, sentence) for pattern in hidden_question_patterns):
         return "是问句"
 
@@ -278,7 +280,7 @@ def main_req(user_text, bot_id):  # 向coze机器人客服发送信息
     return '请求失败'  # 请求失败时的返回内容
 
 
-def run_main_thread():  # 主运行部分
+def run_main_thread_question_judgment():  # 判断问句线程
     data_list_round_count = 0  # 这是运行到的行数值
 
     try:
@@ -288,35 +290,63 @@ def run_main_thread():  # 主运行部分
 
                 if len(data_list) > data_list_round_count:
                     # 调用用户综合数据，user_typ_complex是发送给coze机器人的，username是用户姓名，comment是用户评论
-                    user_name, comment = user_typ_transfer(data_list_round_count)
-                    print(f"用户名: {user_name} | 评论: {comment}")
+                    user_name, comment, question_judgment = user_typ_transfer(data_list_round_count)
 
                     # 判断是否是问句
                     first_three_chars = is_question(comment)
-                    print(first_three_chars)
+                    print(f"句型: {first_three_chars} | 用户名: {user_name} | 评论: {comment}")
 
-                    # 检查 result 是否不等于 "非问句"
-                    if first_three_chars == "是问句":
+                    # 将用户信息以及机器人回复储存到data_list
+                    data_list[data_list_round_count][2] = first_three_chars
+
+                    data_list_round_count += 1
+
+            else:
+                # 如果 data_list 为空，可以选择暂停一段时间再检查
+                time.sleep(1)  # 暂停 1 秒
+
+    except KeyboardInterrupt:
+        print("程序被中断")
+
+
+def run_main_thread_reply():  # 机器人回复线程
+    data_list_round_count = 0  # 这是运行到的行数值
+
+    try:
+        while True:
+            if data_list:
+                # 如果 data_list 不是空的，处理数据
+
+                if len(data_list) > data_list_round_count:
+                    # 调用用户综合数据，user_typ_complex是发送给coze机器人的，username是用户姓名，comment是用户评论
+                    user_name, comment, question_judgment = user_typ_transfer(data_list_round_count)
+
+                    while question_judgment in ["", None]:  # 检查是否为空字符串或 None
+                        # 等待 0.01 秒钟后再检查
+                        time.sleep(0.01)
+                        # 查看是否判断完毕
+                        question_judgment = user_typ_transfer(data_list_round_count)
+
+                    # 检查 result 是否等于 "是问句"
+                    if question_judgment == "是问句":
                         # 获取机器人回复并在前加上@user_name
                         result = f"@{user_name}, {main_req(comment, '7396127315828949032')}"
+
+                        print(result)  # 打印回复内容
 
                         clean_message = remove_non_bmp_characters(result)  # 删除特殊符号
                         # 发送信息到抖音
                         # send_message(clean_message)  # 去除特殊符号在发送
 
                         # 将用户信息以及机器人回复储存到data_list
-                        data_list[data_list_round_count][2:4] = [first_three_chars, result]
+                        data_list[data_list_round_count][3] = [result]
 
                         # 将用户信息以及机器人回复储存到Excel
-                        append_to_excel('data.xlsx', user_name, comment, first_three_chars, result)
-                        print(result)
+                        append_to_excel('data.xlsx', user_name, comment, question_judgment, result)
 
                     else:
-                        # 将用户信息以及机器人回复储存到data_list
-                        data_list[data_list_round_count][2] = first_three_chars
-
                         # 将用户信息以及机器人回复储存到Excel
-                        append_to_excel('data.xlsx', user_name, comment, first_three_chars, "")
+                        append_to_excel('data.xlsx', user_name, comment, question_judgment, "")
 
                     data_list_round_count += 1
 
@@ -338,8 +368,14 @@ def user_typ_transfer(data_list_round_count):  # 获取并且转换列表内的�
     user_name = data_row[0]  # 用户名字
     comment = data_row[1]  # 用户发送的信息
 
+    # 检查 data_row[2] 是否为空值
+    if data_row[2] not in [None, ""]:  # 如果不是空值那么返回判断结果
+        question_judgment = data_row[2]
+    else:
+        question_judgment = None
+
     # 返回格式化的字符串
-    return user_name, comment
+    return user_name, comment, question_judgment
 
 
 def append_to_excel(file_path, username, user_comment, judgment_question, bot_reply):  # 储存信息到Excel
@@ -374,13 +410,15 @@ def append_to_excel(file_path, username, user_comment, judgment_question, bot_re
 def main():  # 启动双线程
     # 启动线程
     thread1 = threading.Thread(target=monitor_screen, name="MonitorScreen")
-    thread2 = threading.Thread(target=run_main_thread, name="MainThread")
+    thread2 = threading.Thread(target=run_main_thread_question_judgment, name="QuestionJudgmentThread")
+    thread3 = threading.Thread(target=run_main_thread_reply, name="BotReplyThread")
 
     global data_list  # 用于处理用户回复
     data_list = []  # 清空数据列表
 
-    thread1.start()
-    thread2.start()
+    thread1.start()  # 这个线程用于获取抖音直播用户的评论
+    thread2.start()  # 这个用于判断问句并在输出框发送句型，用户名，评论
+    thread3.start()  # 这个线程用于回复那些是问句的问题
 
 
 if __name__ == '__main__':
@@ -399,9 +437,9 @@ if __name__ == '__main__':
         chrome.add_cookie(cookie)
 
     # 自定义您要进入的直播间链接
-    # chrome.get('https://live.douyin.com/741682777632')  # 李宁直播间
+    chrome.get('https://live.douyin.com/741682777632')  # 李宁直播间
     # chrome.get('https://live.douyin.com/509601340564')  # 陆教授直播间
-    chrome.get('https://live.douyin.com/53417358783')  # 新东方
+    # chrome.get('https://live.douyin.com/53417358783')  # 新东方
 
     # 等待一段时间，确保页面加载完毕
     time.sleep(10)
