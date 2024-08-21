@@ -299,6 +299,9 @@ def run_main_thread_question_judgment():  # 判断问句线程
                     # 将用户信息以及机器人回复储存到data_list
                     data_list[data_list_round_count][2] = first_three_chars
 
+                    if first_three_chars == "是问句":  # 稍微等待一下回复问句线程
+                        time.sleep(1)
+
                     data_list_round_count += 1
 
             else:
@@ -432,9 +435,10 @@ if __name__ == '__main__':
         chrome.add_cookie(cookie)
 
     # 自定义您要进入的直播间链接
-    chrome.get('https://live.douyin.com/741682777632')  # 李宁直播间
+    # chrome.get('https://live.douyin.com/741682777632')  # 李宁直播间
     # chrome.get('https://live.douyin.com/509601340564')  # 陆教授直播间
-    # chrome.get('https://live.douyin.com/53417358783')  # 新东方
+    chrome.get('https://live.douyin.com/53417358783')  # 新东方
+    # chrome.get('https://live.douyin.com/751909701794')  # 安踏
 
     # 等待一段时间，确保页面加载完毕
     time.sleep(10)
