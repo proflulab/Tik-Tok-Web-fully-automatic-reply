@@ -7,8 +7,9 @@ def is_question(sentence):
         return None
 
     # 常见的中文疑问词集合
-    chinese_question_words = {"吗", "么", "什么", "怎么", "为什么", "是否", "哪", "几", "多少", "多大", "谁", "哪儿", "能否",
-                              "哪里", "哪个", "何时", "怎样", "咋样", "有何", "有么", "对吧", "好吗", "如何", "为啥", "难道", "有没有"}
+    chinese_question_words = {"吗", "么", "什么", "怎么", "为什么", "是否", "哪", "几", "多少", "多大", "谁", "啥", "哪儿",
+                              "能否", "哪里", "哪个", "何时", "怎样", "咋样", "有何", "有么", "对吧", "好吗", "如何", "为啥",
+                              "难道", "有没有"}
 
     # 常见英文疑问词集合
     english_question_words = {"what", "how", "why", "is", "are", "does", "do", "did", "can", "could", "will",
@@ -17,6 +18,7 @@ def is_question(sentence):
     # 常见的中英文问句短语
     question_phrases = ["你觉得呢", "应该可以吧", "你认为呢", "行不行", "是不是", "可以吗", "能不能", "好不好",
                         "会不会", "这样行吗", "可以不", "对不对", "难道不", "该如何", "怎么办", "这样不好吧",
+                        "可不可以",
                         "你觉得", "你怎么看", "行了吧", "aren't you", "isn't it", "could it be", "how about"]
 
     # 过滤侮辱性或无意义的短语
@@ -49,7 +51,7 @@ def is_question(sentence):
         return "是问句"
 
     # 检查隐含疑问语气
-    hidden_question_patterns = [r".*了没有$", r".*了没$", r".*吗$", r"有没有.*", r".*咋.*"]
+    hidden_question_patterns = [r".*了没有$", r".*了没$", r".*吗$", r"有没有.*", r".*咋.*", r".*行不.*"]
     if any(re.search(pattern, sentence) for pattern in hidden_question_patterns):
         return "是问句"
 
