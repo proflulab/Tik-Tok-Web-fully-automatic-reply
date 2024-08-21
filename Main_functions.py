@@ -303,7 +303,7 @@ def run_main_thread_question_judgment():  # 判断问句线程
 
             else:
                 # 如果 data_list 为空，可以选择暂停一段时间再检查
-                time.sleep(1)  # 暂停 1 秒
+                time.sleep(0.5)  # 暂停 1 秒
 
     except KeyboardInterrupt:
         print("程序被中断")
@@ -352,7 +352,7 @@ def run_main_thread_reply():  # 机器人回复线程
 
             else:
                 # 如果 data_list 为空，可以选择暂停一段时间再检查
-                time.sleep(1)  # 暂停 1 秒
+                time.sleep(0.5)  # 暂停 1 秒
 
     except KeyboardInterrupt:
         print("程序被中断")
