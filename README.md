@@ -152,6 +152,40 @@ pip install pandas openpyxl
 
 <br>
 
+找到**Main_functions.py**中的这个模块**main_req**
+```
+def main_req(user_text, bot_id):  # 向coze机器人客服发送信息
+```
+
+<br>
+
+更改**Authorization**为你自己获取的**APITOKEN**
+```
+    url = "https://api.coze.cn/open_api/v2/chat"
+    headers = {
+        "Authorization": "Yours_APITOKEN",
+        "Content-Type": "application/json",
+        "Accept": "*/*",
+        "Connection": "keep-alive"
+    }
+```
+
+<br>
+
+再找到这个模块**run_main_thread_reply**
+```
+def run_main_thread_reply():  # 机器人回复线程
+```
+
+<br>
+
+更改这里**result**中**main_req**的**yours_bot_id**为你自己的**BotId**
+```
+ # 检查 result 是否等于 "是问句"
+ if question_judgment == "是问句":
+     # 获取机器人回复并在前加上@user_name
+     result = f"@{user_name}, {main_req(comment, '7396127315828949032')}"
+```
 
 
 ## 实现功能
