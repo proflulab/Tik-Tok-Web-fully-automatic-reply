@@ -30,7 +30,7 @@
 <br><br><br><br>
 
 <h1 align="center">部署教程</h1>
-<h2 align="center">设置CozeBot</h2>
+<h3 align="center">设置CozeBot
 
 <br>
 
@@ -95,7 +95,7 @@
 
 <br><br>
 
-<h2 align="center">设置Python</h2>
+<h3 align="center">设置Python
 
 <br>
 
@@ -206,6 +206,13 @@ def run_main_thread_reply():  # 机器人回复线程
      result = f"@{user_name}, {main_req(comment, '7396127315828949032')}"
 ```
 <br><br>
+
+<h1 align="center">原理展示</h1>
+
+<br>
+
+懒得写了后面再说
+
 
 
 ## 实现功能
