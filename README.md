@@ -156,3 +156,5 @@ pip install pandas openpyxl
 - 数据集训练
   - 问答数据准确度达到75%（尹航，8月22日）
 - 增加敏感词过滤模块
+
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)
