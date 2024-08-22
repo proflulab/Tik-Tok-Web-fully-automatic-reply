@@ -18,7 +18,7 @@
 <br><br><br><br>
 
 <div align="center" style="font-size: 32px; font-weight: bold; margin: 0; padding: 0;">
-    —— ：&nbsp;&nbsp;概述&nbsp;&nbsp;： ——
+    ——= &nbsp;&nbsp;概述&nbsp;&nbsp; =——
 </div>
 
 <br><br>
@@ -35,7 +35,7 @@
 
 <br><br>
 
-<h3 align="center">—— ：&nbsp;&nbsp; 设置CozeBot &nbsp;&nbsp;： ——
+<h3 align="center">——= &nbsp;&nbsp; 设置CozeBot &nbsp;&nbsp; =——
 
 <br>
 
@@ -102,7 +102,8 @@
 
 <br><br>
 
-<h3 align="center">设置Python
+
+<h3 align="center">——= &nbsp;&nbsp; 设置Python &nbsp;&nbsp; =——
 
 <br>
 
