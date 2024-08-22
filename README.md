@@ -21,11 +21,11 @@
 
 <br><br>
 
-<h2 align="center" style="text-indent: 20px; margin: 0; padding: 0; border: none; border-bottom: none; text-decoration: none;">
+<div align="center" style="text-indent: 20px; margin: 0; padding: 0; font-size: 24px; font-weight: bold;">
     部署教程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     原理展示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     待开发项
-</h2>
+</div>
 
 <br><br><hr><br><br>
 
