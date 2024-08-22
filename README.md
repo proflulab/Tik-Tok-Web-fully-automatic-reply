@@ -122,7 +122,7 @@ pip install pandas openpyxl
 
 <br><br>
 
-## 获取**CozeAPI**
+## 获取CozeAPI_TOKEN
 
 好的你现在已经掌握了基本技巧，现在开始获取coze**api**,找到主页点击左下角**CozeAPI**
 
@@ -138,13 +138,23 @@ pip install pandas openpyxl
 
 <br><br>
 
-## 设置**CozeBot**
+## 设置CozeBot
 
 <br>
 
 现在要编辑**客服机器人**，找到你刚刚创建的**机器人**，设置为**Agent （工作流模式）**,并且添加你创建的**工作流**
 
 <img src="https://github.com/user-attachments/assets/2f767492-992b-49f2-9f64-090c1ed1d65b" alt="image" style="width: 600px; height: auto;">
+
+<br><br>
+
+## 获取CozeBotId
+
+<br>
+
+找到你**客服机器人上方**的**网址URL**，只需要/bot/后面的**数字部分**
+
+<img src="https://github.com/user-attachments/assets/5546f3b3-b3a5-4b70-99ec-d6f38058cf5d" alt="image" style="width: 600px; height: auto;">
 
 <br><br>
 
@@ -156,7 +166,6 @@ pip install pandas openpyxl
 ```
 def main_req(user_text, bot_id):  # 向coze机器人客服发送信息
 ```
-
 <br>
 
 更改**Authorization**为你自己获取的**APITOKEN**
@@ -169,14 +178,12 @@ def main_req(user_text, bot_id):  # 向coze机器人客服发送信息
         "Connection": "keep-alive"
     }
 ```
-
-<br>
+<br><br>
 
 再找到这个模块**run_main_thread_reply**
 ```
 def run_main_thread_reply():  # 机器人回复线程
 ```
-
 <br>
 
 更改这里**result**中**main_req**的**yours_bot_id**为你自己的**BotId**
@@ -186,6 +193,7 @@ def run_main_thread_reply():  # 机器人回复线程
      # 获取机器人回复并在前加上@user_name
      result = f"@{user_name}, {main_req(comment, '7396127315828949032')}"
 ```
+<br><br>
 
 
 ## 实现功能
