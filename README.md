@@ -25,9 +25,9 @@
     部署教程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     原理展示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     待开发项
-<hr>
+</h2>
 
-<br><br><br><br>
+<br><br><hr><br><br>
 
 <h1 align="center">部署教程
 
@@ -42,7 +42,7 @@
 
 <br>
 
-首先登录到[coze](https://coze.cn),找到``个人空间``，在右上角找到并点击``创建Bot``，这个我们稍后会用到。这里需要你创建一个``工作流``和``数据集``
+登录到[coze](https://coze.cn)找到``个人空间``，右上角找到并点击``创建Bot``，这个我们稍后会用到。这里需要你创建一个``工作流``和``数据集``
 
 <img src="https://github.com/user-attachments/assets/6d1f2b08-62d7-46d3-bdc8-9d95c0cc1f67" alt="image" style="width: 600px; height: auto;">
 
@@ -58,7 +58,7 @@
 
 ## 获取CozeAPI_TOKEN
 
-好的你现在已经掌握了基本技巧，现在开始获取coze``api``,找到主页点击左下角``CozeAPI``
+现在开始获取coze``api``,找到主页点击左下角``CozeAPI``
 
 <br>
 
@@ -66,7 +66,7 @@
 
 <br>
 
-创建``API``，请确保``只有你自己知道``，请注意保存，这个``只能复制一次``
+创建``API``，请确保``只有你自己知道``，注意保存，这个``只能复制一次``
 
 <img src="https://github.com/user-attachments/assets/37ec8de2-ad83-46bd-a11b-f2d4573fd6a3" alt="image" style="width: 600px; height: auto;">
 
@@ -93,7 +93,9 @@
 <br><br>
 
 ## 发布客服机器人
-点击右上角的**发布按钮**，在**选择发布平台下方**勾选**Bot as API**和**Web SDK**
+
+点击右上角的``发布按钮``，在``选择发布平台下方``勾选``Bot as API``和``Web SDK``
+
 <img src="https://github.com/user-attachments/assets/71d74632-1b66-4dfc-a220-d414e6b5f0f3" alt="image" style="width: 600px; height: auto;">
 
 <br><br>
@@ -119,7 +121,7 @@ pip install pandas openpyxl
 ```
 <br>
 
-粘贴在**PyCharm**的**Terminal**里面
+粘贴在``PyCharm``的``Terminal``里面
 
 <img src="https://github.com/user-attachments/assets/e9f05a0c-f993-484c-a363-434dd050fa35" alt="image" style="width: 600px; height: auto;">
 
@@ -129,13 +131,13 @@ pip install pandas openpyxl
 
 <br>
 
-右键**PyCharm快捷方式**，选择**属性**，获取安装路径
+桌面右键``PyCharm快捷方式``，选择``属性``，获取安装路径
 
 <img src="https://github.com/user-attachments/assets/3f36b4f5-ac49-459f-8807-b53f6105fd9e" alt="image" style="width: 600px; height: auto;">
 
 <br><br>
 
-右键**此电脑**，选择**属性**，点击高级系统设置，选择高级，选择环境变量
+右键``此电脑``，选择``属性``，点击``高级系统设置``，选择``高级``，选择``环境变量``
 
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/user-attachments/assets/85fe830d-a8a5-4d19-aef2-221552b7f89f" alt="Image 1" style="width: 45%; height: auto;">
@@ -144,7 +146,7 @@ pip install pandas openpyxl
 
 <br><br>
 
-找到上方的**XXX的用户变量**，找到**Path**并**双击**它。点击新建，将复制的安装路径（除去exe文件）粘贴上去
+找到上方的``XXX的用户变量``，找到``Path``并``双击``它。点击新建，将复制的安装路径（除去exe文件）粘贴上去
 
 <div style="display: flex; justify-content: space-between;">
   <img src="https://github.com/user-attachments/assets/99dbc566-4d1b-4ac9-906d-d7383277d09a" alt="Image 1" style="width: 45%; height: auto;">
@@ -153,7 +155,7 @@ pip install pandas openpyxl
 
 <br><br>
 
-安装**Chrome**在**Path**的位置相同，**Path**用于使计算机调用此软件
+安装``Chrome``在``Path``的位置相同，``Path``用于使计算机调用此软件
 
 <br><br>
 
@@ -161,8 +163,8 @@ pip install pandas openpyxl
 
 <br>
 
-首先，这需要用到**python**代码，找到GitHub文件中的Automatically_obtain_login.py下载下来，运行一下。
-运行后，你需要**扫描登录**你的抖音账户，在输出框输入**任意按键**，就能得到你的**登录Cookie**，**请不要发给任何人**
+首先，这需要用到``python``代码，找到GitHub文件中的``Automatically_obtain_login.py``下载下来，运行一下。
+运行后，你需要``扫描登录``你的抖音账户，在输出框输入``任意按键``，就能得到你的``登录Cookie``，``请不要发给任何人``
 
 <img src="https://github.com/user-attachments/assets/d12d031f-2da7-4a40-b0b9-5c87effe995c" alt="image" style="width: 600px; height: auto;">
 
@@ -177,13 +179,13 @@ pip install pandas openpyxl
 
 <br>
 
-找到**Main_functions.py**中的这个模块**main_req**
+找到``Main_functions.py``中的这个模块``main_req``
 ```
 def main_req(user_text, bot_id):  # 向coze机器人客服发送信息
 ```
 <br>
 
-更改**Authorization**为你自己获取的**APITOKEN**
+更改``Authorization``为你自己获取的``APITOKEN``
 ```
     url = "https://api.coze.cn/open_api/v2/chat"
     headers = {
@@ -195,13 +197,13 @@ def main_req(user_text, bot_id):  # 向coze机器人客服发送信息
 ```
 <br><br>
 
-再找到这个模块**run_main_thread_reply**
+再找到这个模块``run_main_thread_reply``
 ```
 def run_main_thread_reply():  # 机器人回复线程
 ```
 <br>
 
-更改这里**result**中**main_req**的**yours_bot_id**为你自己的**BotId**
+更改这里``result``中``main_req``的``yours_bot_id``为你自己的``BotId``
 ```
  # 检查 result 是否等于 "是问句"
  if question_judgment == "是问句":
