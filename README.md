@@ -17,13 +17,13 @@
 
 <br><br><br><br>
 
-<h1 align="center">概述</h1>
+<h1 align="center">概述
 
 <br><br>
 
 <h2 align="center" style="text-indent: 20px; margin: 0; padding: 0;">
-    部署教程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    原理展示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    部署教程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    原理展示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     待开发项
 <hr>
 
@@ -31,7 +31,7 @@
 
 <h1 align="center">部署教程
 
-<br>
+<br><br>
 
 <h3 align="center">设置CozeBot
 
@@ -42,7 +42,7 @@
 
 <br>
 
-首先登录到[coze](https://coze.cn),找到**个人空间**，在右上角找到并点击**创建Bot**，这个我们稍后会用到。这里需要你创建一个**工作流**，和**数据集**
+首先登录到[coze](https://coze.cn),找到``个人空间``，在右上角找到并点击``创建Bot``，这个我们稍后会用到。这里需要你创建一个``工作流``和``数据集``
 
 <img src="https://github.com/user-attachments/assets/6d1f2b08-62d7-46d3-bdc8-9d95c0cc1f67" alt="image" style="width: 600px; height: auto;">
 
@@ -58,7 +58,7 @@
 
 ## 获取CozeAPI_TOKEN
 
-好的你现在已经掌握了基本技巧，现在开始获取coze**api**,找到主页点击左下角**CozeAPI**
+好的你现在已经掌握了基本技巧，现在开始获取coze``api``,找到主页点击左下角``CozeAPI``
 
 <br>
 
@@ -66,7 +66,7 @@
 
 <br>
 
-创建**api**，请确保**只有你自己知道**，请注意保存，这个**只能复制一次**
+创建``API``，请确保``只有你自己知道``，请注意保存，这个``只能复制一次``
 
 <img src="https://github.com/user-attachments/assets/37ec8de2-ad83-46bd-a11b-f2d4573fd6a3" alt="image" style="width: 600px; height: auto;">
 
@@ -76,7 +76,7 @@
 
 <br>
 
-现在要编辑**客服机器人**，找到你刚刚创建的**机器人**，设置为**Agent （工作流模式）**,并且添加你创建的**工作流**
+现在要编辑``客服机器人``，找到你刚刚创建的``机器人``，设置为``Agent （工作流模式）``,并且添加你创建的``工作流``
 
 <img src="https://github.com/user-attachments/assets/2f767492-992b-49f2-9f64-090c1ed1d65b" alt="image" style="width: 600px; height: auto;">
 
@@ -86,7 +86,7 @@
 
 <br>
 
-找到你**客服机器人上方**的**网址URL**，只需要/bot/后面的**数字部分**
+找到你``客服机器人上方``的``网址URL``，只需要/bot/后面的``数字部分``
 
 <img src="https://github.com/user-attachments/assets/5546f3b3-b3a5-4b70-99ec-d6f38058cf5d" alt="image" style="width: 600px; height: auto;">
 
