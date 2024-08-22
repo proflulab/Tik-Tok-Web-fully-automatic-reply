@@ -25,11 +25,11 @@
     部署教程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     原理展示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     待开发项
-<h2>
+<hr>
 
 <br><br><br><br>
 
-<h1 align="center">部署教程</h1>
+<h1 align="center">部署教程
 
 <br>
 
