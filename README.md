@@ -103,7 +103,7 @@ pip install pandas openpyxl
 
 <br><br>
 
-## ~~创建**Coze**工作流~~ 旧方法
+## ~~创建**Coze**工作流~~-旧方法已弃用
 你可以忽略这里在最新的代码中有直接的算法
 
 <br>
@@ -145,6 +145,17 @@ pip install pandas openpyxl
 现在要编辑**客服机器人**，找到你刚刚创建的**机器人**，设置为**Agent （工作流模式）**,并且添加你创建的**工作流**
 
 <img src="https://github.com/user-attachments/assets/2f767492-992b-49f2-9f64-090c1ed1d65b" alt="image" style="width: 600px; height: auto;">
+
+<br>
+
+## 实现功能
+
+- [x] 自动获取直播间信息
+- [x] 自动发送信息
+- [x] 三线程提高效率
+- [x] 算法判断问句
+- [ ] 数据实时同步至多维表
+- [ ] 问答数据
 
 
 ## 待开发
