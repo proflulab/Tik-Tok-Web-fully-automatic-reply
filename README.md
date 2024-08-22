@@ -103,7 +103,8 @@ pip install pandas openpyxl
 
 <br><br>
 
-## 创建**Coze**工作流
+## ~~创建**Coze**工作流~~ 旧方法
+你可以忽略这里在最新的代码中有直接的算法
 
 <br>
 
@@ -157,5 +158,4 @@ pip install pandas openpyxl
   - 问答数据准确度达到75%（尹航，8月22日）
 - 增加敏感词过滤模块
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=donut-vertical&langs_count=5&custom_title=Most%20Used%20Languages)](https://github.com/anuraghazra/github-readme-stats)
 
