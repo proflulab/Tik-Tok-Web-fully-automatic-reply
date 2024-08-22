@@ -104,7 +104,7 @@ pip install pandas openpyxl
 <br><br>
 
 ## ~~创建**Coze**工作流~~-旧方法已弃用
-你可以忽略这里在最新的代码中有直接的算法
+**你可以忽略这里在最新的代码中有直接的算法**
 
 <br>
 
@@ -155,6 +155,12 @@ pip install pandas openpyxl
 找到你**客服机器人上方**的**网址URL**，只需要/bot/后面的**数字部分**
 
 <img src="https://github.com/user-attachments/assets/5546f3b3-b3a5-4b70-99ec-d6f38058cf5d" alt="image" style="width: 600px; height: auto;">
+
+<br><br>
+
+## 发布客服机器人
+点击右上角的**发布按钮**，在**选择发布平台下方**勾选**Bot as API**和**Web SDK**
+<img src="https://github.com/user-attachments/assets/71d74632-1b66-4dfc-a220-d414e6b5f0f3" alt="image" style="width: 600px; height: auto;">
 
 <br><br>
 
