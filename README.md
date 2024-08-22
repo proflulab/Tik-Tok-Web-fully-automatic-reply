@@ -217,15 +217,13 @@ def run_main_thread_reply():  # 机器人回复线程
 
 <h1 align="center">原理展示
 
-<br><br><hr><br><br>
+<br><br>
 
 ## 懒得写了后面再说
 
 <br><br><hr><br><br>
 
 <h1 align="center">待开发项
-
-<br><br><hr><br><br>
 
 ## 实现功能
 
