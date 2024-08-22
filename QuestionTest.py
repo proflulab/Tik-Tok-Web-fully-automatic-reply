@@ -85,5 +85,3 @@ while True:
         break
     result = is_question(user_input)
     print(f"检测结果：{result}")
-
-print('测试推送2')
