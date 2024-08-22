@@ -213,15 +213,19 @@ def run_main_thread_reply():  # 机器人回复线程
      # 获取机器人回复并在前加上@user_name
      result = f"@{user_name}, {main_req(comment, '7396127315828949032')}"
 ```
-<br><br>
+<br><br><hr><br><br>
 
-<h1 align="center">原理展示</h1>
+<h1 align="center">原理展示
 
-<br>
+<br><br><hr><br><br>
 
-懒得写了后面再说
+## 懒得写了后面再说
 
+<br><br><hr><br><br>
 
+<h1 align="center">待开发项
+
+<br><br><hr><br><br>
 
 ## 实现功能
 
