@@ -1,4 +1,5 @@
 from selenium import webdriver
+from dotenv import load_dotenv
 import time
 import pickle
 import threading
@@ -17,6 +18,9 @@ import pandas as pd
 import os
 
 import re
+
+load_dotenv()
+TIKTOK_URL = os.getenv('TIKTOK_URL') or 'https://live.douyin.com/'
 
 data_list = []  # 这里定义一个全局变量来存储数据
 
@@ -428,7 +432,7 @@ if __name__ == '__main__':
     chrome = create_chrome_driver()
 
     # 打开抖音网站
-    chrome.get('https://www.douyin.com/')
+    chrome.get(TIKTOK_URL)
 
     # 添加Cookie以实现持久登录
     for cookie in cookies_list:
