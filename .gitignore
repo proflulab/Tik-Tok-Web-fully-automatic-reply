@@ -1,0 +1,5 @@
+
+.env
+douyin_cookie.pickle
+
+/src/public/db_data/*.db
