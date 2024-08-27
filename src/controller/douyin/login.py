@@ -2,8 +2,8 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-22 21:07:29
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-08-22 21:07:42
-FilePath: /Tik-Tok-Web-fully-automatic-reply/browser/douyin_login.py
+LastEditTime: 2024-08-27 21:58:12
+FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/login.py
 Description: 
 
 Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
@@ -13,6 +13,10 @@ Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
 from selenium import webdriver
 import time
 import pickle
+import os
+
+path_cookie = "../../public/other/douyin_cookie.pickle"
+DOUYIN_URL = os.getenv('DOUYIN_URL') or'https://www.douyin.com/'
 
 
 def login_and_save_cookies():
@@ -26,7 +30,7 @@ def login_and_save_cookies():
     chrome.implicitly_wait(10)
 
     # 打开抖音网站
-    chrome.get('https://www.douyin.com/')
+    chrome.get(DOUYIN_URL)
 
     # 等待一段时间，以便手动登录
     time.sleep(1)
@@ -34,7 +38,7 @@ def login_and_save_cookies():
     time.sleep(0.3)
 
     # 保存Cookie到文件
-    with open("douyin_cookie.pickle", 'wb') as file:
+    with open(path_cookie, 'wb') as file:
         pickle.dump(chrome.get_cookies(), file)
 
     # 删除浏览器中的所有Cookie
