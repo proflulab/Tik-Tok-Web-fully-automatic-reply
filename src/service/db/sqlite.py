@@ -2,35 +2,12 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-22 23:23:43
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-08-26 21:25:40
+LastEditTime: 2024-08-30 17:17:18
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/service/db/sqlite.py
 Description: 
 
 Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
 '''
-
-# import sqlite3
-
-# # 创建与数据库的连接
-# conn = sqlite3.connect('../../public/db_data/data.db')
-
-# # conn = sqlite3.connect(':memory:')
-
-# # 创建一个游标 cursor
-# cur = conn.cursor()
-
-# # # 建表的sql语句
-# # sql_text_1 = '''CREATE TABLE scores
-# #            (编号 TEXT,
-# #             问题 TEXT,
-# #             回答 TEXT);'''
-# # # 执行sql语句
-# # cur.execute(sql_text_1)
-
-# # 插入单条数据
-# sql_text_2 = "INSERT INTO scores VALUES('1','陆向谦实验室AI训练营时间', '**********')"
-# cur.execute(sql_text_2)
-# conn.commit()
 
 import sqlite3
 from sqlite3 import Error
@@ -125,3 +102,26 @@ class SQLiteHelper:
 #     db.delete("users", {"name": "Alice"})
 
 #     db.close_connection()
+
+# import sqlite3
+
+# # 创建与数据库的连接
+# conn = sqlite3.connect('../../public/db_data/data.db')
+
+# # conn = sqlite3.connect(':memory:')
+
+# # 创建一个游标 cursor
+# cur = conn.cursor()
+
+# # # 建表的sql语句
+# # sql_text_1 = '''CREATE TABLE scores
+# #            (编号 TEXT,
+# #             问题 TEXT,
+# #             回答 TEXT);'''
+# # # 执行sql语句
+# # cur.execute(sql_text_1)
+
+# # 插入单条数据
+# sql_text_2 = "INSERT INTO scores VALUES('1','陆向谦实验室AI训练营时间', '**********')"
+# cur.execute(sql_text_2)
+# conn.commit()

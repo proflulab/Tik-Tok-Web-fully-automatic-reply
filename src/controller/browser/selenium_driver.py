@@ -2,20 +2,12 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-22 21:21:57
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-08-29 21:11:33
+LastEditTime: 2024-08-30 18:21:41
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/browser/selenium_driver.py
 Description: 
 
 Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
 '''
-
-# from selenium import webdriver
-# from selenium.webdriver.chrome.options import Options
-
-# def driver():  # 打开浏览器
-#     options = Options()
-#     options.add_argument("--start-maximized")  # 启动时最大化窗口
-#     return webdriver.Chrome(options=options)  # 默认使用chromedriver的系统路径
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -33,7 +25,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-path_cookie = os.path.join(os.getcwd(), "../../public/other/douyin_cookie.pickle")
+current_dir = os.path.dirname(os.path.abspath(__file__))
+path_cookie = os.path.join(current_dir, "../../public/other/douyin_cookie.pickle")
 
 DOUYIN_URL = os.getenv('DOUYIN_URL') or'https://www.douyin.com/'
 
@@ -51,6 +44,8 @@ class SeleniumWrapper:
         self.driver = webdriver.Chrome(options=options)
         self.wait = WebDriverWait(self.driver, 10)
 
+        self.driver.get(DOUYIN_URL)
+
         if os.path.exists(path_cookie):
             with open(path_cookie, 'rb') as file:
                 cookies_list = pickle.load(file)
@@ -59,8 +54,6 @@ class SeleniumWrapper:
                 self.driver.add_cookie(cookie)
 
         else:
-            # 打开抖音网站
-            self.driver.get(DOUYIN_URL)
             # 等待一段时间，以便手动登录
             time.sleep(1)
             input("登入抖音账号后，请输入任意键继续...")

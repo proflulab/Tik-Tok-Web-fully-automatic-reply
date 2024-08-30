@@ -2,30 +2,30 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-24 09:14:32
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-08-26 21:28:17
+LastEditTime: 2024-08-30 20:12:26
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/get_comments.py
 Description: 
 
 Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
 '''
 
-from selenium import webdriver
 import time
+from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from src.service.db.sqlite import SQLiteHelper
 
-def create_chrome_driver():  # 打开浏览器
-    options = Options()
-    options.add_argument("--start-maximized")  # 启动时最大化窗口
-    return webdriver.Chrome(options=options)  # 默认使用chromedriver的系统路径
+import os
+import uuid
 
+from dotenv import load_dotenv
+load_dotenv()
 
-chrome = create_chrome_driver()
+DOUYIN_URL = os.getenv('DOUYIN_URL') or'https://www.douyin.com/'
+DOUYIN_LIVE_URL = os.getenv('DOUYIN_LIVE_URL') or'https://live.douyin.com/'
+DOUYIN_ROOM = os.getenv('DOUYIN_ROOM') or '53417358783'
 
 data_list = []  # 这里定义一个全局变量来存储数据
 
@@ -68,10 +68,14 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
     last_data_id = None  # 用于存储上一个 `data-id`
 
     try:
+        from main import wrapper
+        wrapper.open_url(DOUYIN_LIVE_URL + DOUYIN_ROOM)
+        # input("等待登录认证验证操作，按任意键继续！")
+
         while True:
             try:
                 # 确保页面元素加载完成
-                web_text_elements = WebDriverWait(chrome, 10).until(
+                web_text_elements = WebDriverWait(wrapper.driver, 10).until(
                     EC.presence_of_all_elements_located(
                         (By.CSS_SELECTOR, 'div.webcast-chatroom___item.webcast-chatroom___enter-done'))
                 )
@@ -119,6 +123,14 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
 
                         # 打印用户名和评论
                         print(f"用户名: {username} | 评论: {comment}")
+
+                        # 生成唯一的 UUID
+                        unique_id = str(uuid.uuid4())
+
+                        from main import db
+                        sql_text = "INSERT INTO scores VALUES(?, ?, ?, ?, ?)"
+                        db.execute_query(sql_text, (unique_id, username, time.time(), comment, ''))
+
                     except Exception as inner_e:
                         # 如果在尝试获取用户名或评论时出错，继续到下一个元素
                         print("## 提取信息时发生错误，可能是没找到类别，不用在意，可以查看这段代码的位置进行调试 ##")  # 防止一些非信息元素出bug
