@@ -248,4 +248,9 @@ def run_main_thread_reply():  # 机器人回复线程
 - 数据集训练
   - 问答数据准确度达到75%（尹航，8月22日）
 - 增加敏感词过滤模块
+- 验证模块主动识别
 
+## 参考资料
+
+教程：使用Python和Selenium自动化抖音互动
+https://dashen.wang/6174.html

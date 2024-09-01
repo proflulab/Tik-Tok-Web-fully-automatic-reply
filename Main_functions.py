@@ -332,7 +332,7 @@
 
 #                         clean_message = remove_non_bmp_characters(result)  # 删除特殊符号
 #                         # 发送信息到抖音
-#                         # send_message(clean_message)  # 去除特殊符号在发送
+#                         send_message(clean_message)  # 去除特殊符号在发送
 
 #                         # 将用户信息以及机器人回复储存到data_list
 #                         data_list[data_list_round_count][3] = result

@@ -23,7 +23,7 @@ class SQLiteHelper:
     def create_connection(self):
         """创建数据库连接"""
         try:
-            self.connection = sqlite3.connect(self.db_file)
+            self.connection = sqlite3.connect(self.db_file, check_same_thread=False)
             print(f"连接到 SQLite 数据库成功: {self.db_file}")
         except Error as e:
             print(f"连接错误: {e}")

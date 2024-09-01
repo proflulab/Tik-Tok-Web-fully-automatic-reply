@@ -2,7 +2,7 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-22 21:21:57
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-08-30 18:21:41
+LastEditTime: 2024-09-01 02:19:19
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/browser/selenium_driver.py
 Description: 
 
@@ -42,7 +42,7 @@ class SeleniumWrapper:
         options.add_argument('--disable-dev-shm-usage')
 
         self.driver = webdriver.Chrome(options=options)
-        self.wait = WebDriverWait(self.driver, 10)
+        # self.wait = WebDriverWait(self.driver, 10)
 
         self.driver.get(DOUYIN_URL)
 
