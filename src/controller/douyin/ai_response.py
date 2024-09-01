@@ -2,7 +2,7 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-30 22:32:42
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-09-01 02:44:46
+LastEditTime: 2024-09-01 09:22:11
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/ai_response.py
 Description: 
 
@@ -57,6 +57,9 @@ def ai_response():  # 获取用户在抖音直播间发送的信息
                 conditions = {"id": result[0][0]}
                 # 调用 update 方法
                 db.update(table_name, set_columns, conditions)
+
+                from main import wrapper
+                wrapper.send_message_element(response[0], '//textarea[@class="webcast-chatroom___textarea"]')
 
             except Exception as e:
                 print(f"An error occurred: {e}")

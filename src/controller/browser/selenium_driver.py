@@ -2,7 +2,7 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-22 21:21:57
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-09-01 02:19:19
+LastEditTime: 2024-09-01 09:20:05
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/browser/selenium_driver.py
 Description: 
 
@@ -78,7 +78,7 @@ class SeleniumWrapper:
         print(f"Clicked on element by {by} with value {value}")
 
     def enter_text(self, by, value, text):
-        element = self.find_element(by, value)
+        element = self.find_element(by, value)  
         element.clear()
         element.send_keys(text)
         print(f"Entered text into element by {by} with value {value}: {text}")
@@ -86,6 +86,23 @@ class SeleniumWrapper:
     def close_browser(self):
         self.driver.quit()
         print("Closed browser")
+
+    def send_message_element(self, message, xpath):  # 向抖音直播间发送信息
+
+        """发送指定的消息并按下 Enter 键"""
+        try:
+            # 等待文本区域元素加载并找到
+            text_element = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, xpath))
+            )
+            text_element.clear()
+            text_element.send_keys(message)
+            time.sleep(0.5)
+
+            # 按下 Enter 键发送消息
+            text_element.send_keys(Keys.RETURN)
+        except Exception as e:
+            print(f"发送消息时发生错误: {e}")
 
 # # 示例使用
 # if __name__ == "__main__":

@@ -2,7 +2,7 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-24 09:14:32
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-08-31 08:55:53
+LastEditTime: 2024-09-01 09:25:01
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/get_comments.py
 Description: 
 
@@ -10,7 +10,6 @@ Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
 '''
 
 import time
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
