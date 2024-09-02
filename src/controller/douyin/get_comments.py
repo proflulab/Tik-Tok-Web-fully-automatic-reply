@@ -2,28 +2,21 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-24 09:14:32
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-09-01 09:25:01
+LastEditTime: 2024-09-01 10:04:31
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/get_comments.py
 Description: 
 
 Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
 '''
 
-import time
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-# from src.service.db.sqlite import SQLiteHelper
-
 import os
 import uuid
+import time
+from selenium.webdriver.common.by import By
 
 from dotenv import load_dotenv
 load_dotenv()
 
-# db = SQLiteHelper("src/public/db_data/data.db")
-# db.create_connection()
 
 DOUYIN_URL = os.getenv('DOUYIN_URL') or'https://www.douyin.com/'
 DOUYIN_LIVE_URL = os.getenv('DOUYIN_LIVE_URL') or'https://live.douyin.com/'
@@ -77,10 +70,12 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
         while True:
             try:
                 # 确保页面元素加载完成
-                web_text_elements = WebDriverWait(wrapper.driver, 10).until(
-                    EC.presence_of_all_elements_located(
-                        (By.CSS_SELECTOR, 'div.webcast-chatroom___item.webcast-chatroom___enter-done'))
-                )
+                # web_text_elements = WebDriverWait(wrapper.driver, 10).until(
+                #     EC.presence_of_all_elements_located(
+                #         (By.CSS_SELECTOR, 'div.webcast-chatroom___item.webcast-chatroom___enter-done'))
+                # )
+
+                web_text_elements = wrapper.find_element(By.CSS_SELECTOR, 'div.webcast-chatroom___item.webcast-chatroom___enter-done')
 
                 if web_text_elements:
                     # 提取最新的元素

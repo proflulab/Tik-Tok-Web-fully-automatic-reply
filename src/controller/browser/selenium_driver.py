@@ -2,7 +2,7 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-22 21:21:57
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-09-01 09:20:05
+LastEditTime: 2024-09-02 20:36:14
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/browser/selenium_driver.py
 Description: 
 
@@ -42,7 +42,7 @@ class SeleniumWrapper:
         options.add_argument('--disable-dev-shm-usage')
 
         self.driver = webdriver.Chrome(options=options)
-        # self.wait = WebDriverWait(self.driver, 10)
+        self.wait = WebDriverWait(self.driver, 10)
 
         self.driver.get(DOUYIN_URL)
 
@@ -54,14 +54,14 @@ class SeleniumWrapper:
                 self.driver.add_cookie(cookie)
 
         else:
-            # 等待一段时间，以便手动登录
             time.sleep(1)
             input("登入抖音账号后，请输入任意键继续...")
             time.sleep(0.3)
+            self._save_cookies()
 
-            # 保存Cookie到文件
-            with open(path_cookie, 'wb') as file:
-                pickle.dump(self.driver.get_cookies(), file)
+    def _save_cookies(self):
+        with open(path_cookie, 'wb') as file:
+            pickle.dump(self.driver.get_cookies(), file)
 
     def open_url(self, url):
         self.driver.get(url)
@@ -71,6 +71,11 @@ class SeleniumWrapper:
         element = self.wait.until(EC.presence_of_element_located((by, value)))
         print(f"Found element by {by} with value {value}")
         return element
+
+    def find_elements(self, element, by, value):
+        elements = element.find_elements(by, value)
+        print(f"Found element by {by} with value {value}")
+        return elements
 
     def click_element(self, by, value):
         element = self.find_element(by, value)
