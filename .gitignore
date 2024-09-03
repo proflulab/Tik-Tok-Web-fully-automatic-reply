@@ -2,3 +2,7 @@
 
 /src/public/other/*.pickle
 /src/public/db_data/*.db
+
+.idea
+__pycache__
+.venv
