@@ -28,6 +28,31 @@ class SQLiteHelper:
         except Error as e:
             print(f"连接错误: {e}")
 
+    def table_exists(self, table_name):
+        """检查表是否存在"""
+        query = f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}';"
+        result = self.execute_query(query)
+        return len(result) > 0
+
+    def get_table_columns(self, table_name):
+        """获取表的字段信息"""
+        query = f"PRAGMA table_info({table_name});"
+        result = self.execute_query(query)
+        return [row[1] for row in result]  # 获取每个字段的名字
+
+    def update_table(self, table_name, required_columns):
+        """更新表的字段"""
+        current_columns = self.get_table_columns(self, table_name)
+        missing_columns = [col for col in required_columns if col not in current_columns]
+
+        if missing_columns:
+            for column in missing_columns:
+                alter_query = f"ALTER TABLE {table_name} ADD COLUMN {column};"
+                self.execute_query(alter_query)
+            print(f"更新表 {table_name}，新增字段: {missing_columns}")
+        else:
+            print(f"表 {table_name} 已包含所有字段，无需更新")
+
     def close_connection(self):
         """关闭数据库连接"""
         if self.connection:
@@ -103,25 +128,4 @@ class SQLiteHelper:
 
 #     db.close_connection()
 
-# import sqlite3
 
-# # 创建与数据库的连接
-# conn = sqlite3.connect('../../public/db_data/data.db')
-
-# # conn = sqlite3.connect(':memory:')
-
-# # 创建一个游标 cursor
-# cur = conn.cursor()
-
-# # # 建表的sql语句
-# # sql_text_1 = '''CREATE TABLE scores
-# #            (编号 TEXT,
-# #             问题 TEXT,
-# #             回答 TEXT);'''
-# # # 执行sql语句
-# # cur.execute(sql_text_1)
-
-# # 插入单条数据
-# sql_text_2 = "INSERT INTO scores VALUES('1','陆向谦实验室AI训练营时间', '**********')"
-# cur.execute(sql_text_2)
-# conn.commit()
