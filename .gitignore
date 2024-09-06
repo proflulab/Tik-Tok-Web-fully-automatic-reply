@@ -1,4 +1,8 @@
 .env
 
-/src/public/other/*.pickle
-/src/public/db_data/*.db
+/src/public/other/douyin_cookie.pickle
+/src/public/db_data/data.db
+
+.idea
+__pycache__
+.venv
