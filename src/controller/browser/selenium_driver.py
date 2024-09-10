@@ -32,36 +32,42 @@ DOUYIN_URL = os.getenv('DOUYIN_URL') or'https://www.douyin.com/'
 
 
 class SeleniumWrapper:
+    _instance = None  # 防止浏览器重复打开
 
-    def __init__(self, headless=False):
-        options = Options()
-        if headless:
-            options.add_argument('--headless')
-        options.add_argument('--disable-gpu')
-        options.add_argument('--no-sandbox')
-        options.add_argument('--disable-dev-shm-usage')
+    def __new__(cls, headless=False):
+        if cls._instance is None:  # 如果实例还不存在，则创建实例
+            cls._instance = super(SeleniumWrapper, cls).__new__(cls)
+            options = Options()
+            if headless:
+                options.add_argument('--headless')
+            options.add_argument('--disable-gpu')
+            options.add_argument('--no-sandbox')
+            options.add_argument('--disable-dev-shm-usage')
 
-        self.driver = webdriver.Chrome(options=options)
-        # self.wait = WebDriverWait(self.driver, 10)
+            cls._instance.driver = webdriver.Chrome(options=options)
+            # self.wait = WebDriverWait(self.driver, 10)
 
-        self.driver.get(DOUYIN_URL)
+            cls._instance.driver.get(DOUYIN_URL)
 
-        if os.path.exists(path_cookie):
-            with open(path_cookie, 'rb') as file:
-                cookies_list = pickle.load(file)
+            if os.path.exists(path_cookie):
+                with open(path_cookie, 'rb') as file:
+                    cookies_list = pickle.load(file)
 
-            for cookie in cookies_list:
-                self.driver.add_cookie(cookie)
+                for cookie in cookies_list:
+                    cls._instance.driver.add_cookie(cookie)
 
-        else:
-            # 等待一段时间，以便手动登录
-            time.sleep(1)
-            input("登入抖音账号后，请输入任意键继续...")
-            time.sleep(0.3)
+            else:
+                # 等待一段时间，以便手动登录
+                time.sleep(1)
+                input("登入抖音账号后，请输入任意键继续...")
+                time.sleep(0.3)
 
-            # 保存Cookie到文件
-            with open(path_cookie, 'wb') as file:
-                pickle.dump(self.driver.get_cookies(), file)
+                # 保存Cookie到文件
+                with open(path_cookie, 'wb') as file:
+                    pickle.dump(cls._instance.driver.get_cookies(), file)
+
+        # 返回实例
+        return cls._instance
 
     def open_url(self, url):
         self.driver.get(url)
