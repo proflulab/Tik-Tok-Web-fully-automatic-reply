@@ -20,8 +20,10 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-COZE_BOT_ID = os.getenv('COZE_BOT_ID') or'7368796970410459174'
-COZE_AUTH = os.getenv('COZE_AUTH') or'*****'
+COZE_BOT_ID = os.getenv('COZE_BOT_ID') or '7368796970410459174'
+COZE_AUTH = os.getenv('COZE_AUTH') or '*****'
+
+Send_Message = os.getenv('COZE_AUTH') or False
 
 
 def ai_response():  # 获取用户在抖音直播间发送的信息
@@ -62,6 +64,12 @@ def ai_response():  # 获取用户在抖音直播间发送的信息
                 # 调用 update 方法
                 db.update(table_name, set_columns, conditions)
 
+                # from src.controller.douyin.get_comments import remove_non_bmp_characters
+                # response_clear = remove_non_bmp_characters("Hello 😊 你好")
+                # print(response_clear)
+                # 将回复发送到抖音
+                send_message(response)
+
             except Exception as e:
                 print(f"An error occurred: {e}")
 
@@ -73,22 +81,23 @@ def ai_response():  # 获取用户在抖音直播间发送的信息
         # db.close_connection()
 
 
-# def send_message(message):  # 向抖音直播间发送信息
-#     """发送指定的消息并按下 Enter 键"""
-#     try:
-#
-#         try:
-#             # 等待文本区域元素加载并找到
-#             text_element = WebDriverWait(chrome, 10).until(
-#                 EC.presence_of_element_located((By.XPATH, '//textarea[@class="webcast-chatroom___textarea"]'))
-#             )
-#             text_element.clear()
-#             text_element.send_keys(message)
-#             time.sleep(0.5)
-#
-#             # 按下 Enter 键发送消息
-#             text_element.send_keys(Keys.RETURN)
-#         except Exception as e:
-#             print(f"发送消息时发生错误: {e}")
-#     except Exception as e:
-#         print(f"在发送信息时,导入网站信息发生错误: {e}")
+def send_message(message):  # 向抖音直播间发送信息
+    """发送指定的消息并按下 Enter 键"""
+    if Send_Message:
+        try:
+            from main import wrapper
+            try:
+                # 等待文本区域元素加载并找到
+                text_element = WebDriverWait(wrapper.driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, '//textarea[@class="webcast-chatroom___textarea"]'))
+                )
+                text_element.clear()
+                text_element.send_keys(message)
+                time.sleep(0.5)
+
+                # 按下 Enter 键发送消息
+                text_element.send_keys(Keys.RETURN)
+            except Exception as e:
+                print(f"发送消息时发生错误: {e}")
+        except Exception as e:
+            print(f"在发送信息时,导入网站信息发生错误: {e}")

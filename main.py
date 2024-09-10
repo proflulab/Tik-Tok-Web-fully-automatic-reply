@@ -32,5 +32,5 @@ if __name__ == '__main__':
     thread3 = threading.Thread(target=ai_response, name="BotReplyThread")
 
     thread1.start()  # 这个线程用于获取抖音直播用户的评论
-    # thread2.start()  # 这个用于判断问句并在输出框发送句型，用户名，评论
-    # thread3.start()  # 这个线程用于回复那些是问句的问题
+    thread2.start()  # 这个用于判断问句并在输出框发送句型，用户名，评论
+    thread3.start()  # 这个线程用于回复那些是问句的问题

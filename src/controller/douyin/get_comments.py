@@ -26,8 +26,8 @@ load_dotenv()
 # db = SQLiteHelper("src/public/db_data/data.db")
 # db.create_connection()
 
-DOUYIN_URL = os.getenv('DOUYIN_URL') or'https://www.douyin.com/'
-DOUYIN_LIVE_URL = os.getenv('DOUYIN_LIVE_URL') or'https://live.douyin.com/'
+DOUYIN_URL = os.getenv('DOUYIN_URL') or 'https://www.douyin.com/'
+DOUYIN_LIVE_URL = os.getenv('DOUYIN_LIVE_URL') or 'https://live.douyin.com/'
 DOUYIN_ROOM = os.getenv('DOUYIN_ROOM') or '53417358783'
 
 data_list = []  # 这里定义一个全局变量来存储数据
@@ -73,7 +73,6 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
     try:
         from main import wrapper
         wrapper.open_url(DOUYIN_LIVE_URL + DOUYIN_ROOM)
-        # input("等待登录认证验证操作，按任意键继续！")
 
         while True:
             try:

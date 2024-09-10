@@ -28,7 +28,7 @@ load_dotenv()
 current_dir = os.path.dirname(os.path.abspath(__file__))
 path_cookie = os.path.join(current_dir, "../../public/other/douyin_cookie.pickle")
 
-DOUYIN_URL = os.getenv('DOUYIN_URL') or'https://www.douyin.com/'
+DOUYIN_URL = os.getenv('DOUYIN_URL') or 'https://www.douyin.com/'
 
 
 class SeleniumWrapper:
