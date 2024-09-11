@@ -2,7 +2,7 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-24 09:14:32
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-08-31 08:55:53
+LastEditTime: 2024-09-11 20:57:24
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/get_comments.py
 Description: 
 
@@ -14,6 +14,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from src.controller.browser.selenium_driver import SeleniumWrapper
 
 # from src.service.db.sqlite import SQLiteHelper
 
@@ -71,7 +72,7 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
     last_data_id = None  # 用于存储上一个 `data-id`
 
     try:
-        from main import wrapper
+        wrapper = SeleniumWrapper()
         wrapper.open_url(DOUYIN_LIVE_URL + DOUYIN_ROOM)
         # input("等待登录认证验证操作，按任意键继续！")
 
