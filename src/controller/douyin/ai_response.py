@@ -10,6 +10,10 @@ Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
 '''
 
 from src.service.coze import CozeChatService
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 import time
 import os
 
@@ -67,3 +71,24 @@ def ai_response():  # 获取用户在抖音直播间发送的信息
 
         # 关闭数据库连接
         # db.close_connection()
+
+
+# def send_message(message):  # 向抖音直播间发送信息
+#     """发送指定的消息并按下 Enter 键"""
+#     try:
+#
+#         try:
+#             # 等待文本区域元素加载并找到
+#             text_element = WebDriverWait(chrome, 10).until(
+#                 EC.presence_of_element_located((By.XPATH, '//textarea[@class="webcast-chatroom___textarea"]'))
+#             )
+#             text_element.clear()
+#             text_element.send_keys(message)
+#             time.sleep(0.5)
+#
+#             # 按下 Enter 键发送消息
+#             text_element.send_keys(Keys.RETURN)
+#         except Exception as e:
+#             print(f"发送消息时发生错误: {e}")
+#     except Exception as e:
+#         print(f"在发送信息时,导入网站信息发生错误: {e}")
