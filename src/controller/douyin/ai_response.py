@@ -58,18 +58,26 @@ def ai_response():  # 获取用户在抖音直播间发送的信息
                 response = coze_service.send_and_get_reply(result[0][3])
                 print("Full Conversation Response:")
                 # print(response)
+
+                # 将 response 拼接成 "@username，response" 格式, 将回复的['']删除
+                response = f"@{result[0][1]}, {response[0]}"
+                # print(f"Response Message: {response}")
+
                 # 更新表中的数据
                 table_name = "scores"
-                set_columns = {"answer_content": response[0]}
+                set_columns = {"answer_content": response}
                 conditions = {"id": result[0][0]}
                 # 调用 update 方法
                 db.update(table_name, set_columns, conditions)
 
-                # from src.controller.douyin.get_comments import remove_non_bmp_characters
-                # response_clear = remove_non_bmp_characters("Hello 😊 你好")
-                # print(response_clear)
                 # 将回复发送到抖音
                 if Send_Message:
+                    # 删除特殊符号，防止发送错误
+                    from src.controller.douyin.get_comments import remove_non_bmp_characters
+                    response = remove_non_bmp_characters(response)
+                    # print(f"Send Response Message: {response}")
+
+                    # 发送到抖音
                     send_message(response)
 
             except Exception as e:
