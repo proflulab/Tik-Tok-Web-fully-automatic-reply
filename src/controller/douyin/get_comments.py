@@ -2,11 +2,11 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-24 09:14:32
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-09-11 20:57:24
+LastEditTime: 2024-08-31 08:55:53
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/get_comments.py
-Description: 
+Description:
 
-Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
+Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
 '''
 
 import time
@@ -14,7 +14,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from src.controller.browser.selenium_driver import SeleniumWrapper
 
 # from src.service.db.sqlite import SQLiteHelper
 
@@ -72,9 +71,8 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
     last_data_id = None  # 用于存储上一个 `data-id`
 
     try:
-        wrapper = SeleniumWrapper()
+        from main import wrapper
         wrapper.open_url(DOUYIN_LIVE_URL + DOUYIN_ROOM)
-        # input("等待登录认证验证操作，按任意键继续！")
 
         while True:
             try:
@@ -121,6 +119,10 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
                         # 这段代码用于判断是否是我的机器人发送的回复，防止信息被录入
                         if is_robot_reply(comment, 4):  # 前面一个变量是用户评论，后面是最多向上查找数量
                             continue  # 跳过该条记录
+
+                        # 检查 .u2QdU6ht 元素中是否包含 .N3OGoGnA 子元素 ##查看是否是'我'发送的信息##
+                        if username_element.find_elements(By.CSS_SELECTOR, '.N3OGoGnA'):
+                            print("1")
 
                         # 将新数据作为新行添加到 data_list 中
                         data_list.append([username, comment, "", ""])
