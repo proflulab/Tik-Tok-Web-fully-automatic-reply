@@ -24,7 +24,7 @@ COZE_BOT_ID = os.getenv('COZE_BOT_ID') or '7368796970410459174'
 COZE_AUTH = os.getenv('COZE_AUTH') or '*****'
 
 # 没有环境变量 SEND_MESSAGE 的时候返回 False，如果有这个变量，根据其内容返回布尔值
-Send_Message = os.getenv('SEND_MESSAGE', 'False').lower() in ['true']
+Send_Message = os.getenv('SEND_MESSAGE', 'False').lower() == 'true'
 
 
 def ai_response():  # 获取用户在抖音直播间发送的信息
