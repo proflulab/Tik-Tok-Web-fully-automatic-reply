@@ -1,12 +1,12 @@
 '''
-Author: 杨仕明 shiming.y@qq.com
-Date: 2024-08-22 23:23:43
-LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-08-30 17:17:18
-FilePath: /Tik-Tok-Web-fully-automatic-reply/src/service/db/sqlite.py
-Description: 
+Author: 杨仕明 shiming.y@qq.com and 宋明轩 songmingxuan936@gmail.com
+Date: 2024-08-24 09:14:32
+LastEditors: 宋明轩 songmingxuan936@gmail.com
+LastEditTime: 2024-09-14 08:47:58
+FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/get_comments.py
+Description:
 
-Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
+Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
 '''
 
 import sqlite3

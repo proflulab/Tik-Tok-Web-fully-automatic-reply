@@ -1,12 +1,12 @@
 '''
-Author: 杨仕明 shiming.y@qq.com
-Date: 2024-08-30 22:32:42
-LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-08-31 09:15:06
-FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/ask_guard.py
-Description: 
+Author: 杨仕明 shiming.y@qq.com and 宋明轩 songmingxuan936@gmail.com
+Date: 2024-08-24 09:14:32
+LastEditors: 宋明轩 songmingxuan936@gmail.com
+LastEditTime: 2024-09-14 08:47:58
+FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/get_comments.py
+Description:
 
-Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
+Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
 '''
 
 from src.service.query_guard import query_guard_own
