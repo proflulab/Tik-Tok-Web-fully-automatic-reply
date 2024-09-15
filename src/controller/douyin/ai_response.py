@@ -20,8 +20,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-COZE_BOT_ID = os.getenv('COZE_BOT_ID') or'7368796970410459174'
-COZE_AUTH = os.getenv('COZE_AUTH') or'*****'
+COZE_BOT_ID = os.getenv('COZE_BOT_ID') or '7368796970410459174'
+COZE_AUTH = os.getenv('COZE_AUTH') or '*****'
 
 
 def ai_response():  # 获取用户在抖音直播间发送的信息

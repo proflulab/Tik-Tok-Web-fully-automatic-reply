@@ -2,23 +2,25 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-22 21:19:26
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-09-11 20:56:29
+LastEditTime: 2024-09-01 02:02:53
 FilePath: /Tik-Tok-Web-fully-automatic-reply/main.py
-Description: 
+Description:
 
-Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
+Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
 '''
 
 import threading
 
 from src.controller.douyin.get_comments import get_comments
 from src.controller.douyin.ask_guard import ask_guard
+from src.controller.browser.selenium_driver import SeleniumWrapper
 from src.service.db.sqlite import SQLiteHelper
 from src.controller.douyin.ai_response import ai_response
 
 # init
 db = SQLiteHelper("src/public/db_data/data.db")
 db.create_connection()
+wrapper = SeleniumWrapper(headless=False)
 
 if __name__ == '__main__':
 
