@@ -2,7 +2,7 @@
 Author: 杨仕明 shiming.y@qq.com
 Date: 2024-08-30 22:32:42
 LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-09-01 02:44:46
+LastEditTime: 2024-09-17 22:00:27
 FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/ai_response.py
 Description:
 
@@ -57,6 +57,7 @@ def ai_response():  # 获取用户在抖音直播间发送的信息
                 print("Full Conversation Response:")
                 # print(response)
 
+                # todo: response = f"@{result[0][1]}, {response[0]}"插入数据库的数据不应该带有@相关的用户！
                 # 将 response 拼接成 "@username，response" 格式, 将回复的['']删除
                 response = f"@{result[0][1]}, {response[0]}"
                 # print(f"机器人客服回复 : {response}")
@@ -76,6 +77,7 @@ def ai_response():  # 获取用户在抖音直播间发送的信息
 
                     wrapper = SeleniumWrapper("DOUYIN", headless=False)
                     wrapper.send_message(response)  # 发送到抖音
+                    # todo: 对于已经在直播间回答的问题，可以在数据库相关的的字段做好标注
 
             except Exception as e:
                 print(f"An error occurred: {e}")
