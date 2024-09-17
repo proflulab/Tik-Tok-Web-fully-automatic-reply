@@ -116,6 +116,22 @@ class SeleniumWrapper:
         self.driver.quit()
         print("Closed browser")
 
+    def send_message(self, message):  # 向抖音直播间发送信息
+        """发送指定的消息并按下 Enter 键"""
+        try:
+            # 等待文本区域元素加载并找到
+            text_element = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, '//textarea[@class="webcast-chatroom___textarea"]'))
+            )
+            text_element.clear()
+            text_element.send_keys(message)
+            time.sleep(0.5)
+
+            # 按下 Enter 键发送消息
+            text_element.send_keys(Keys.RETURN)
+        except Exception as e:
+            print(f"发送消息时发生错误: {e}")
+
 # # 示例使用
 # if __name__ == "__main__":
 #     driver_path = '/path/to/chromedriver'  # 替换为你自己的chromedriver路径
