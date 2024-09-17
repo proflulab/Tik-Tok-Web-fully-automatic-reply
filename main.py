@@ -1,9 +1,9 @@
 '''
-Author: 杨仕明 shiming.y@qq.com
-Date: 2024-08-22 21:19:26
-LastEditors: 杨仕明 shiming.y@qq.com
-LastEditTime: 2024-09-11 20:56:29
-FilePath: /Tik-Tok-Web-fully-automatic-reply/main.py
+Author: 杨仕明 shiming.y@qq.com, 宋明轩 songmingxuan936@gmail.com
+Date: 2024-08-24 09:14:32
+LastEditors: 宋明轩 songmingxuan936@gmail.com
+LastEditTime: 2024-09-16 20:30:54
+FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/get_comments.py
 Description: 
 
 Copyright (c) 2024 by ${git_name_email}, All Rights Reserved. 
