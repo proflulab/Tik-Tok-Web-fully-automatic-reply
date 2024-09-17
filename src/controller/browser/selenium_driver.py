@@ -34,6 +34,9 @@ DOUYIN_URL = os.getenv('DOUYIN_URL') or'https://www.douyin.com/'
 class SeleniumWrapper:
     web_instances = {}  # 存储不同的 web 实例
 
+    web_name = None  # 类属性，给所有实例一个默认值
+    driver = None  # 类属性，给所有实例一个默认值
+
     def __new__(cls, web_name, headless=False):
         """创建或返回已存在的实例"""
         if web_name in cls.web_instances:
@@ -42,13 +45,11 @@ class SeleniumWrapper:
         # 如果实例不存在，创建新的实例
         new_web_instances = super(SeleniumWrapper, cls).__new__(cls)
         cls.web_instances[web_name] = new_web_instances  # 存储实例
+        new_web_instances.create_web(web_name, headless)  # 创建 web 实例
         return new_web_instances
 
-    def __init__(self, web_name, headless=False):
-        """初始化实例"""
-        if hasattr(self, 'initialized') and self.initialized:
-            return  # 防止 __init__ 重复调用
-
+    def create_web(self, web_name, headless=False):
+        """创建 Web 实例并加载配置"""
         self.web_name = web_name
         options = Options()
         if headless:
@@ -70,8 +71,6 @@ class SeleniumWrapper:
 
             # 加载 Cookie 文件
             self.load_cookies(path_cookie)
-
-        self.initialized = True  # 标记为已初始化
 
     def load_cookies(self, cookie_path):
         # 加载 Cookie 文件
