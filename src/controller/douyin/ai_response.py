@@ -57,25 +57,31 @@ def ai_response():  # 获取用户在抖音直播间发送的信息
                 print("Full Conversation Response:")
                 # print(f"Customer service robot reply : {response}")
 
-                # 更新表中的数据
-                table_name = "scores"
-                set_columns = {"answer_content": response[0]}
-                conditions = {"id": result[0][0]}
-                # 调用 update 方法
-                db.update(table_name, set_columns, conditions)
-
                 # 将回复发送到抖音
                 if Send_Message:
                     # 将 response 拼接成 "@username，response" 格式
-                    response = f"@{result[0][1]}, {response[0]}"
+                    response_sent = f"@{result[0][1]}, {response[0]}"
 
                     # 删除特殊符号，防止发送错误
-                    response = remove_non_bmp_characters(response)
+                    response_sent = remove_non_bmp_characters(response_sent)
                     # print(f"删除特殊符号的回复 : {response}")
 
                     wrapper = SeleniumWrapper("DOUYIN", headless=False)
-                    wrapper.send_message(response)  # 发送到抖音
-                    # todo: 对于已经在直播间回答的问题，可以在数据库相关的的字段做好标注
+                    wrapper.send_message(response_sent)  # 发送到抖音
+
+                    # 用于判断是否发送信息到抖音-这里是已发送
+                    is_message_sent = True
+
+                else:
+                    # 用于判断是否发送信息到抖音-这里是未发送
+                    is_message_sent = False
+
+                # 更新表中的数据
+                table_name = "scores"
+                set_columns = {"answer_content": response[0], "message_sent": is_message_sent}
+                conditions = {"id": result[0][0]}
+                # 调用 update 方法
+                db.update(table_name, set_columns, conditions)
 
             except Exception as e:
                 print(f"An error occurred: {e}")

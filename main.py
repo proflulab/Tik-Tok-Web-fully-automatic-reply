@@ -22,7 +22,7 @@ db.create_connection()
 
 if __name__ == '__main__':
 
-    sql_text = "CREATE TABLE scores (id TEXT,username TEXT,question_time TEXT,comment_content TEXT,question_judgment BOOLEAN,answer_content TEXT);"
+    sql_text = "CREATE TABLE scores (id TEXT,username TEXT,question_time TEXT,comment_content TEXT,question_judgment BOOLEAN,message_sent BOOLEAN,answer_content TEXT);"
     db.execute_query(sql_text)
 
     thread1 = threading.Thread(target=get_comments, name="MonitorScreen")
