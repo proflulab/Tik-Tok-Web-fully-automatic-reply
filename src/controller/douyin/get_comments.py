@@ -39,33 +39,32 @@ def remove_non_bmp_characters(text):  # 删除特殊符号的符号，以防万�
 
 
 def is_robot_reply(comment, max_check_count):
-    """
-    判断是否是机器人发送的回复，防止信息被录入。
+    try:
+        # 从最底往下上查找 answer_content 不为空值并且同时向上寻找三条
+        query = """
+        SELECT answer_content
+        FROM scores
+        WHERE answer_content IS NOT NULL AND answer_content != ''
+        ORDER BY question_time DESC
+        LIMIT ?;
+        """
 
-    :param comment: 当前评论内容
-    :param max_check_count: 最多检查的行数
-    :return: 如果是机器人发送的回复，返回 True；否则返回 False
-    """
-    if len(data_list) > 1:
-        latest_non_empty_comment = None
+        from main import db
 
-        # 从下往上遍历 data_list，最多检查 max_check_count 行
-        for i, row in enumerate(reversed(data_list)):
-            if i >= max_check_count:
-                break
-            if row[3]:  # 如果当前行的第4项不为空
-                latest_non_empty_comment = remove_non_bmp_characters(row[3])
-                # print(f"Checking row: {i+1}, Comment: {latest_non_empty_comment}")  # 调试输出
-                break  # 找到第一个非空值项后，跳出循环
+        # 将结果中的内容存储到一个列表中
+        result_list = [row[0] for row in db.fetch_all(query, (max_check_count,))]
+        # result_list = db.fetch_all(query)
+        # print(result_list)
 
-        # 如果找到了非空值项，则与 comment 的前10个字符进行比较
-        if latest_non_empty_comment:
-            # print(f"Comparing: {latest_non_empty_comment[:10]} with {comment[:10]}")  # 调试输出
-            if comment[:10] == latest_non_empty_comment[:10]:
-                # print(f"Latest row number: {len(data_list)} - Skipping")  # 打印最新行数
-                return True  # 是机器人发送的回复
+        if comment in result_list:
+            print('与机器人回复匹配项相同')
+            return True
+        else:
+            print('未找到与机器人回复匹配项')
+            return False
 
-    return False  # 不是机器人发送的回复
+    except Exception as e:
+        print(f"判断是否是机器人回复出现错误: {e}")
 
 
 def get_comments():  # 获取用户在抖音直播间发送的信息
@@ -118,9 +117,12 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
                         # 去掉用户名中的最后一个字符 `：`
                         username = username_text[:-1]  # 移除最后一个字符 `：`
 
-                        # 这段代码用于判断是否是我的机器人发送的回复，防止信息被录入
-                        if is_robot_reply(comment, 4):  # 前面一个变量是用户评论，后面是最多向上查找数量
-                            continue  # 跳过该条记录
+                        # 检查 .u2QdU6ht 元素中是否包含 .N3OGoGnA 子元素 ##查看是否是'我'发送的信息##
+                        if username_element.find_elements(By.CSS_SELECTOR, '.N3OGoGnA'):
+                            if is_robot_reply(comment, 4):
+                                continue
+                            else:
+                                print("这条信息不是机器人发送的")
 
                         # 将新数据作为新行添加到 data_list 中
                         data_list.append([username, comment, "", ""])
