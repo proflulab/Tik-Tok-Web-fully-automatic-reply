@@ -21,14 +21,16 @@ from src.controller.browser.selenium_driver import SeleniumWrapper
 import os
 import uuid
 
+import re
+
 from dotenv import load_dotenv
 load_dotenv()
 
 # db = SQLiteHelper("src/public/db_data/data.db")
 # db.create_connection()
 
-DOUYIN_URL = os.getenv('DOUYIN_URL') or'https://www.douyin.com/'
-DOUYIN_LIVE_URL = os.getenv('DOUYIN_LIVE_URL') or'https://live.douyin.com/'
+DOUYIN_URL = os.getenv('DOUYIN_URL') or 'https://www.douyin.com/'
+DOUYIN_LIVE_URL = os.getenv('DOUYIN_LIVE_URL') or 'https://live.douyin.com/'
 DOUYIN_ROOM = os.getenv('DOUYIN_ROOM') or '53417358783'
 
 data_list = []  # 这里定义一个全局变量来存储数据
@@ -55,6 +57,8 @@ def is_robot_reply(comment, max_check_count):
         result_list = [row[0] for row in db.fetch_all(query, (max_check_count,))]
         # result_list = db.fetch_all(query)
         # print(result_list)
+
+        comment = re.sub(r'^@[^,]+,\s*', '', comment)
 
         if comment in result_list:
             print('与机器人回复匹配项相同')
