@@ -27,8 +27,8 @@ load_dotenv()
 # db = SQLiteHelper("src/public/db_data/data.db")
 # db.create_connection()
 
-DOUYIN_URL = os.getenv('DOUYIN_URL') or'https://www.douyin.com/'
-DOUYIN_LIVE_URL = os.getenv('DOUYIN_LIVE_URL') or'https://live.douyin.com/'
+DOUYIN_URL = os.getenv('DOUYIN_URL') or 'https://www.douyin.com/'
+DOUYIN_LIVE_URL = os.getenv('DOUYIN_LIVE_URL') or 'https://live.douyin.com/'
 DOUYIN_ROOM = os.getenv('DOUYIN_ROOM') or '53417358783'
 
 data_list = []  # 这里定义一个全局变量来存储数据
@@ -132,8 +132,8 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
                         unique_id = str(uuid.uuid4())
 
                         from main import db
-                        sql_text = "INSERT INTO scores VALUES(?, ?, ?, ?, ?,?)"
-                        db.execute_query(sql_text, (unique_id, username, time.time(), comment, '', ''))
+                        sql_text = "INSERT INTO scores VALUES(?, ?, ?, ?, ?, ?, ?)"
+                        db.execute_query(sql_text, (unique_id, username, time.time(), comment, '', '', ''))
 
                     except Exception as inner_e:
                         # 如果在尝试获取用户名或评论时出错，继续到下一个元素
