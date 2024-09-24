@@ -129,6 +129,7 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
                         #     else:
                         #         print("这条信息不是机器人发送的")
 
+                        # 查看是否是'我'发送的信息
                         if is_robot_reply(comment, 4):
                             continue
                         else:
