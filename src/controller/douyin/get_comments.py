@@ -121,12 +121,18 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
                         # 去掉用户名中的最后一个字符 `：`
                         username = username_text[:-1]  # 移除最后一个字符 `：`
 
-                        # 检查 .u2QdU6ht 元素中是否包含 .N3OGoGnA 子元素 ##查看是否是'我'发送的信息##
-                        if username_element.find_elements(By.CSS_SELECTOR, '.N3OGoGnA'):
-                            if is_robot_reply(comment, 4):
-                                continue
-                            else:
-                                print("这条信息不是机器人发送的")
+                        # 抖音暂时删除了"我"的标识--后续再说
+                        # # 检查 .u2QdU6ht 元素中是否包含 .N3OGoGnA 子元素 ##查看是否是'我'发送的信息##
+                        # if username_element.find_elements(By.CSS_SELECTOR, '.N3OGoGnA'):
+                        #     if is_robot_reply(comment, 4):
+                        #         continue
+                        #     else:
+                        #         print("这条信息不是机器人发送的")
+
+                        if is_robot_reply(comment, 4):
+                            continue
+                        else:
+                            print("这条信息不是机器人发送的")
 
                         # 将新数据作为新行添加到 data_list 中
                         data_list.append([username, comment, "", ""])
