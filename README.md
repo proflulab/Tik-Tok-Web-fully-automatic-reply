@@ -24,37 +24,31 @@
 <br><br>
 
 <div align="center" style="text-indent: 20px; margin: 0; padding: 0; font-size: 24px; font-weight: bold;">
-    部署教程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    原理展示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    准备工作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    使用教程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     待开发项
 </div>
 
+<br><br>
+
+<hr><br><br><br>
+
+<h1 align="center">！！！&nbsp;&nbsp;注意 &nbsp;&nbsp;！！！
+
+<h3 align="center">项目暂时仅支持Chrome浏览器
+<h3 align="center">需自行在项目目录下创建.env文件( 这部分可以跳转到使用教程 )
+
+<br><br>
+
+<hr>
+
 <br><br><hr><br><br>
 
-<h1 align="center">部署教程
+<h1 align="center">准备工作
 
 <br><br>
 
 <h3 align="center">——= &nbsp;&nbsp; 设置CozeBot &nbsp;&nbsp; =——
-
-<br>
-
-## ~~创建**Coze**工作流~~&nbsp;旧方法已弃用
-**你可以忽略这里在最新的代码中有直接的算法**
-
-<br>
-
-登录到[coze](https://coze.cn)找到``个人空间``，右上角找到并点击``创建Bot``，这个我们稍后会用到。这里需要你创建一个``工作流``和``数据集``
-
-<img src="https://github.com/user-attachments/assets/6d1f2b08-62d7-46d3-bdc8-9d95c0cc1f67" alt="image" style="width: 600px; height: auto;">
-
-<br>
-
-<img src="https://github.com/user-attachments/assets/7316a673-c883-42ad-bc79-a62a5f9e1d84" alt="image" style="width: 1000px; height: auto;">
-
-<br>
-
-<img src="https://github.com/user-attachments/assets/4ac4ba06-3a1d-4527-bf00-790f19dd2be5" alt="image" style="width: 1000px; height: auto;">
 
 <br><br>
 
@@ -103,25 +97,20 @@
 <br><br>
 
 
-<h3 align="center">——= &nbsp;&nbsp; 设置Python &nbsp;&nbsp; =——
+<h3 align="center">——= &nbsp;&nbsp; 安装Python依赖 &nbsp;&nbsp; =——
 
-<br>
+<br><br>
 
 ## 安装Python库
 
 <br>
 
-安装用于获取网页端元素位置的库
+使用 pip 来安装``requirements.txt``中列出的所有依赖
 
 ```
-pip install selenium
+pip install -r requirements.txt
 ```
 
-安装存储到Excel里面的库
-
-```
-pip install pandas openpyxl
-```
 <br>
 
 粘贴在``PyCharm``的``Terminal``里面
@@ -131,6 +120,8 @@ pip install pandas openpyxl
 <br><br>
 
 ## 安装PyCharm和Chrome到path环境
+
+**注意---如果代码运行能够打开浏览器可以忽略这部操作**
 
 <br>
 
@@ -162,65 +153,148 @@ pip install pandas openpyxl
 
 <br><br>
 
-## 获取抖音登录Cookie
+<hr>
 
-<br>
-
-首先，这需要用到``python``代码，找到GitHub文件中的``Automatically_obtain_login.py``下载下来，运行一下。
-运行后，你需要``扫描登录``你的抖音账户，在输出框输入``任意按键``，就能得到你的``登录Cookie``，``请不要发给任何人``
-
-<img src="https://github.com/user-attachments/assets/d12d031f-2da7-4a40-b0b9-5c87effe995c" alt="image" style="width: 600px; height: auto;">
-
-<br>
-
-<img src="https://github.com/user-attachments/assets/5e62f1c9-e5a7-41f2-9f4d-b69879cfdb7e" alt="image" style="width: 600px; height: auto;">
-
-<br><br>
-
-
-## 更改Python代码
-
-<br>
-
-找到``Main_functions.py``中的这个模块``main_req``
-```
-def main_req(user_text, bot_id):  # 向coze机器人客服发送信息
-```
-<br>
-
-更改``Authorization``为你自己获取的``APITOKEN``
-```
-    url = "https://api.coze.cn/open_api/v2/chat"
-    headers = {
-        "Authorization": "Yours_APITOKEN",
-        "Content-Type": "application/json",
-        "Accept": "*/*",
-        "Connection": "keep-alive"
-    }
-```
-<br><br>
-
-再找到这个模块``run_main_thread_reply``
-```
-def run_main_thread_reply():  # 机器人回复线程
-```
-<br>
-
-更改这里``result``中``main_req``的``yours_bot_id``为你自己的``BotId``
-```
- # 检查 result 是否等于 "是问句"
- if question_judgment == "是问句":
-     # 获取机器人回复并在前加上@user_name
-     result = f"@{user_name}, {main_req(comment, '7396127315828949032')}"
-```
 <br><br><hr><br><br>
 
-<h1 align="center">原理展示
+<h1 align="center">使用教程
 
 <br><br>
 
-## 算法问句判断
-懒得写了
+<h3 align="center">——= &nbsp;&nbsp; 获取抖音直播间 &nbsp;&nbsp; =——
+
+<br><br>
+
+## 获取抖音直播间号
+
+<br>
+
+找到浏览器``顶部``的``直播间号``
+
+<img src="https://github.com/user-attachments/assets/cb17a848-638c-42c3-9b9d-0fb7a7b77c5a" alt="image" style="width: 600px; height: auto;">
+
+<br><br>
+
+<h3 align="center">——= &nbsp;&nbsp; 配置python文件 &nbsp;&nbsp; =——
+
+<br><br>
+
+## 创建Python配置文件
+
+<br>
+
+这是代码的整体框架
+
+找到``.env.example``文件，复制它，并创建一个``.env``文件
+
+<img src="https://github.com/user-attachments/assets/ec4add60-3d6e-4a05-a75c-fea11148d64c" alt="image" style="width: 600px; height: auto;">
+
+<br><br>
+
+### 这里是``.env``文件
+
+文件结构
+
+```
+# 在 .env 文件中定义的环境变量
+DOUYIN_LIVE_URL=https://live.douyin.com/
+DOUYIN_ROOM=741682777632
+
+#coze机器人的设置
+COZE_BOT_ID=7396
+COZE_AUTH=pat_8RRGf
+
+#设置是否发送回复到抖音-True是发送-False是不发送
+SEND_MESSAGE=False
+```
+
+<br><br>
+
+
+更改``DOUYIN_ROOM``为你自己获取的``直播间号``
+
+```
+DOUYIN_ROOM=741682777632
+```
+<br><br>
+
+更改``COZE_BOT_ID``为你自己获取的``BotId``
+
+更改``COZE_AUTH``为你自己获取的``APITOKEN``
+
+```
+#coze机器人的设置
+COZE_BOT_ID=7396
+COZE_AUTH=pat_8RRGf
+```
+
+<br><br>
+
+这里的``SEND_MESSAGE``是用于设置是否发送回复信息到抖音的
+
+这里建议是通常调试的时候默认``False``防止扰乱直播间
+
+```
+#设置是否发送回复到抖音-True是发送-False是不发送
+SEND_MESSAGE=False
+```
+
+<br><br>
+
+<h3 align="center">——= &nbsp;&nbsp; 数据库及登录凭证文件讲解 &nbsp;&nbsp; =——
+
+<br><br>
+
+## 抖音cookie文件
+首先运行代码，你如果是第一次登录，程序会``自动弹出`` ``登录页面``并且在输出框提示你``登录后输入任意按键``
+
+这时请你扫码并登录，系统会将文件``自动存储``到``other``文件夹里面
+
+<img src="https://github.com/user-attachments/assets/86740ef4-4036-45a9-9d09-ea6e8af56be9" alt="image" style="width: 600px; height: auto;">
+
+## 数据库相关介绍
+
+上面的图片有指明数据库的位置
+
+在``public``的``db_data``里面
+
+<br>
+
+这个是数据库的结构
+
+<img src="https://github.com/user-attachments/assets/ab97b634-f991-4029-8d08-3489f2e85a21" alt="image" style="width: 600px; height: auto;">
+
+<br>
+
+结构元素分别是
+
+``id`` ``username`` ``question_time`` ``comment_content`` ``question_judgment`` ``message_sent`` ``answer_content``
+
+<br><br>
+
+### 数据库整体架构
+
+
+
+<div align="center">
+
+| id      | username | question_time    | comment_content | question_judgment | message_sent | message_sent       |
+|---------|----------|------------------|-----------------|-------------------|--------------|--------------------|
+| 用户id | 用户名称 | 发送评论的时间 | 评论内容 | 问句判断 | 发送信息的状态 | 客服机器人回复 |
+| cadde4fa-abc3-40a4-88ac-1234 | 用*** | 1726821999.56544 | 有没有课程啊 | 1  | 1 | 您好！相关课程.... |
+
+</div>
+
+<br>
+
+发送到抖音的内容
+```
+@用***, 您好！相关课程....
+```
+
+<br><br>
+
+<hr>
 
 <br><br><hr><br><br>
 
@@ -235,18 +309,20 @@ def run_main_thread_reply():  # 机器人回复线程
 - [x] 三线程提高效率
 - [x] 算法判断问句
 - [ ] 数据实时同步至多维表
-- [ ] 问答数据
+- [ ] 更好的微调模型
 
 
 ## 待开发
 
-- 对接多维表，数据实时同步至多维表（瀚中，8月22日）
+- 对接多维表，数据实时同步至多维表（尹航, 9月25日）
 - 优化问题
-  - 优化问句判断方案及其速度
-  - 优化代码，分模块编写，增加可阅读性和开发便利性
-  - ...
-- 数据集训练
-  - 问答数据准确度达到75%（尹航，8月22日）
+  - 优化加载速度
+  - 增加调试功能
+  - 优化客服的回复准确性
+  - 尝试可视化页面
+- 对接多维表，数据实时同步至多维表（尹航, 9月25日）
+- 数据集收集
+  - 收集并整理数据到飞书（尹航, 9月25日）
 - 增加敏感词过滤模块
 - 验证模块主动识别
 
