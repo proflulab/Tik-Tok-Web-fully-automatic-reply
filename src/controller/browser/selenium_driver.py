@@ -58,6 +58,9 @@ class SeleniumWrapper:
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
 
+        # 禁用图片加载
+        options.add_argument("blink-settings=imagesEnabled=false")
+
         self.driver = webdriver.Chrome(options=options)
         self.driver.get(DOUYIN_URL)
 
