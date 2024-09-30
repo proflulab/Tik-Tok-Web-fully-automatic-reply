@@ -57,8 +57,16 @@ class SeleniumWrapper:
         options.add_argument('--disable-gpu')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
+        options.add_argument("blink-settings=imagesEnabled=false")  # 禁用图片加载
 
+        # 初始化 Chrome 浏览器
         self.driver = webdriver.Chrome(options=options)
+
+        # 启用 DevTools, 只拦截视频的加载
+        self.driver.execute_cdp_cmd('Network.enable', {})
+        self.driver.execute_cdp_cmd('Network.setBlockedURLs', {"urls": ["*://*/*video*"]})
+
+        # 加载抖音URL
         self.driver.get(DOUYIN_URL)
 
         # 调用加载 Cookie 文件
