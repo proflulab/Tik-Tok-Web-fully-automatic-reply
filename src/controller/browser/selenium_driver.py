@@ -83,14 +83,21 @@ class SeleniumWrapper:
     def save_cookies(self, cookie_path):
         # 保存 Cookie 文件
 
-        # 等待用户手动登录
-        time.sleep(1)
-        input("登入抖音账号后，请输入任意键继续...")
-        time.sleep(0.3)
+        print("等待用户在三分钟内完成抖音登录")
+        # 等待文本区域元素 div.trust-login-dialog-content 加载并找到
+        try:
+            WebDriverWait(self.driver, 180).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, 'div.trust-login-dialog-content'))
+            )
+            print("检测到已经登录，准备保存 Cookies...")
 
-        # 保存 Cookies 到文件
-        with open(cookie_path, 'wb') as file:
-            pickle.dump(self.driver.get_cookies(), file)
+            # 保存 Cookies 到文件
+            with open(cookie_path, 'wb') as file:
+                pickle.dump(self.driver.get_cookies(), file)
+
+            print(f"Cookies 已成功保存到 {cookie_path}")
+        except Exception as e:
+            print(f"保存 Cookies 时发生错误: {e}")
 
     def open_url(self, url):
         self.driver.get(url)
