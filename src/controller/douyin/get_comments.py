@@ -79,6 +79,10 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
         wrapper.open_url(DOUYIN_LIVE_URL + DOUYIN_ROOM)
         # input("等待登录认证验证操作，按任意键继续！")
 
+        # 检测 cookie 登陆文件是否失效
+        if wrapper.check_login_status():
+            print("登录状态正常，准备获取页面元素")
+
         while True:
             try:
                 # 确保页面元素加载完成

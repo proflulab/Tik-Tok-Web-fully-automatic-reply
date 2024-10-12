@@ -17,6 +17,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import TimeoutException
 import time
 
 import os
@@ -99,6 +100,26 @@ class SeleniumWrapper:
         except Exception as e:
             print(f"保存 Cookies 时发生错误: {e}")
 
+    def check_login_status(self):
+        # 检测抖音是否登录过期
+
+        try:
+            WebDriverWait(self.driver, 5).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, 'div.kzcbdA_r'))
+            )
+            print("检测到抖音登录已经过期，准备保存重新登录...")
+
+            # 删除 cookie 文件
+            delete_file(path_cookie)
+
+        except TimeoutException:
+            # 超时未找到元素，表示登录状态未过期
+            print("登录状态未过期")
+
+        except Exception as e:
+            # 捕获其他异常并打印错误信息
+            print(f"检测抖音登录是否过期时发生错误: {e}")
+
     def open_url(self, url):
         self.driver.get(url)
         print(f"Opened URL: {url}")
@@ -138,6 +159,15 @@ class SeleniumWrapper:
             text_element.send_keys(Keys.RETURN)
         except Exception as e:
             print(f"发送消息时发生错误: {e}")
+
+
+def delete_file(file_path):
+    # 检查文件是否存在，然后删除
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        print(f"文件 {file_path} 已成功删除")
+    else:
+        print(f"删除的文件 {file_path} 不存在")
 
 # # 示例使用
 # if __name__ == "__main__":
