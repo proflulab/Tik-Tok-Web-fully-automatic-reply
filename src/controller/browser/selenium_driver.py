@@ -70,9 +70,6 @@ class SeleniumWrapper:
             # 保存 Cookie 文件到本地
             self.save_cookies(path_cookie)
 
-            # 加载 Cookie 文件
-            self.load_cookies(path_cookie)
-
     def load_cookies(self, cookie_path):
         # 加载 Cookie 文件
         with open(cookie_path, 'rb') as file:
@@ -104,17 +101,31 @@ class SeleniumWrapper:
         # 检测抖音是否登录过期
 
         try:
+            # 尝试检测直播间输入框元素
             WebDriverWait(self.driver, 5).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, 'div.kzcbdA_r'))
+                EC.presence_of_element_located((By.CSS_SELECTOR, 'div.webcast-chatroom___input-container'))
             )
-            print("检测到抖音登录已经过期，准备保存重新登录...")
+            print("登录状态未过期")
+
+        except TimeoutException:
+            # 未找到直播间输入框，表示可能登录已过期，执行重新登录操作
+            print("检测到抖音登录可能过期，准备保存重新登录...")
+
+            # 重新加载抖音登录页面
+            self.driver.get(DOUYIN_URL)
 
             # 删除 cookie 文件
             delete_file(path_cookie)
 
-        except TimeoutException:
-            # 超时未找到元素，表示登录状态未过期
-            print("登录状态未过期")
+            # 检查是否成功删除 cookie 文件
+            if os.path.exists(path_cookie):
+                print("cookie 删除失败，当前状态登录已经过期")
+
+            else:
+                # 保存 Cookie 文件到本地
+                self.save_cookies(path_cookie)
+
+                print("登录状态未过期")
 
         except Exception as e:
             # 捕获其他异常并打印错误信息
