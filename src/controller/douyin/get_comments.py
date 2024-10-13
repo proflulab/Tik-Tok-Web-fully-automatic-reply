@@ -87,9 +87,8 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
         while True:
             try:
                 # 确保页面元素加载完成
-                web_text_elements = WebDriverWait(wrapper.driver, 10).until(
-                    EC.presence_of_all_elements_located(
-                        (By.CSS_SELECTOR, 'div.webcast-chatroom___item.webcast-chatroom___enter-done'))
+                web_text_elements = wrapper.find_whole_elements(
+                    By.CSS_SELECTOR, 'div.webcast-chatroom___item.webcast-chatroom___enter-done', timeout=10
                 )
 
                 if web_text_elements:

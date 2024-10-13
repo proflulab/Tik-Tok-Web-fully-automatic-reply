@@ -81,19 +81,18 @@ class SeleniumWrapper:
     def save_cookies(self, cookie_path):
         # 保存 Cookie 文件
 
-        print("等待用户在三分钟内完成抖音登录")
+        print("\033[94m等待用户在三分钟内完成抖音登录\033[0m")
         # 等待文本区域元素 div.trust-login-dialog-content 加载并找到
         try:
-            WebDriverWait(self.driver, 180).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, 'div.trust-login-dialog-content'))
-            )
-            print("检测到已经登录，准备保存 Cookies...")
+            # 尝试检测抖音登录是否保存的信息框
+            self.find_element(By.CSS_SELECTOR, 'div.trust-login-dialog-content', timeout=180)
+            print("\033[96m检测到已经登录，准备保存 Cookies...\033[0m")
 
             # 保存 Cookies 到文件
             with open(cookie_path, 'wb') as file:
                 pickle.dump(self.driver.get_cookies(), file)
 
-            print(f"Cookies 已成功保存到 {cookie_path}")
+            print(f"\033[92mCookies 已成功保存到 {cookie_path}\033[0m")
         except Exception as e:
             print(f"保存 Cookies 时发生错误: {e}")
 
@@ -102,14 +101,13 @@ class SeleniumWrapper:
 
         try:
             # 尝试检测直播间输入框元素
-            WebDriverWait(self.driver, 5).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, 'div.webcast-chatroom___input-container'))
-            )
-            print("登录状态未过期")
+            self.find_element(By.CSS_SELECTOR, 'div.webcast-chatroom___input-container', timeout=5)
+            # 打印绿色的提示
+            print("\033[92m当前登录状态未过期\033[0m")
 
         except TimeoutException:
             # 未找到直播间输入框，表示可能登录已过期，执行重新登录操作
-            print("检测到抖音登录可能过期，准备保存重新登录...")
+            print("\033[93m检测到抖音登录可能过期，准备保存重新登录...\033[0m")
 
             # 重新加载抖音登录页面
             self.driver.get(DOUYIN_URL)
@@ -119,13 +117,13 @@ class SeleniumWrapper:
 
             # 检查是否成功删除 cookie 文件
             if os.path.exists(path_cookie):
-                print("cookie 删除失败，当前状态登录已经过期")
+                print("\033[91mcookie 删除失败，当前状态登录已经过期\033[0m")
 
             else:
                 # 保存 Cookie 文件到本地
                 self.save_cookies(path_cookie)
 
-                print("登录状态未过期")
+                print("\033[92m当前登录状态未过期\033[0m")
 
         except Exception as e:
             # 捕获其他异常并打印错误信息
@@ -135,18 +133,31 @@ class SeleniumWrapper:
         self.driver.get(url)
         print(f"Opened URL: {url}")
 
-    def find_element(self, by, value):
-        element = self.wait.until(EC.presence_of_element_located((by, value)))
-        print(f"Found element by {by} with value {value}")
+    def find_element(self, by, value, timeout=5):
+        # 寻找网页元素并返回单一元素
+        element = WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located((by, value))
+        )
+        print(f"Found element by {by} with value {value} after waiting for {timeout} seconds")
         return element
 
-    def click_element(self, by, value):
-        element = self.find_element(by, value)
+    def find_whole_elements(self, by, value, timeout=10):
+        # 寻找网页元素并返回全部元素
+        elements = WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_all_elements_located((by, value))
+        )
+        # print(f"Found {len(elements)} elements by {by} with value {value} after waiting for {timeout} seconds")
+        return elements
+
+    def click_element(self, by, value, timeout):
+        # 寻找网页元素并点击元素位置
+        element = self.find_element(by, value, timeout)
         element.click()
         print(f"Clicked on element by {by} with value {value}")
 
-    def enter_text(self, by, value, text):
-        element = self.find_element(by, value)
+    def enter_text(self, by, value, text, timeout):
+        # 寻找网页元素并发送信息
+        element = self.find_element(by, value, timeout)
         element.clear()
         element.send_keys(text)
         print(f"Entered text into element by {by} with value {value}: {text}")
@@ -159,8 +170,8 @@ class SeleniumWrapper:
         """发送指定的消息并按下 Enter 键"""
         try:
             # 等待文本区域元素加载并找到
-            text_element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.XPATH, '//textarea[@class="webcast-chatroom___textarea"]'))
+            text_element = self.find_element(
+                By.XPATH, '//textarea[@class="webcast-chatroom___textarea"]', timeout=5
             )
             text_element.clear()
             text_element.send_keys(message)
