@@ -57,7 +57,7 @@ class SeleniumWrapper:
         options.add_argument('--disable-gpu')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
-        options.add_argument("blink-settings=imagesEnabled=false")  # 禁用图片加载
+        # options.add_argument("blink-settings=imagesEnabled=false")  # 禁用图片加载
 
         # 初始化 Chrome 浏览器
         self.driver = webdriver.Chrome(options=options)
