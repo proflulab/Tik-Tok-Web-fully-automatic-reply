@@ -35,14 +35,14 @@ def profanity_block(sentence):
 
     # 检查是否包含“陆老师”或“陆向谦”或“清华教授”，并且包含“没有”或“不是”，并包含“教授”、“清华”或“老师”
     if (re.search(r'(陆|向谦|教授|清华)', sentence) and
-        re.search(r'(没有|不是)', sentence) and
+        re.search(r'(没有|不是|不配)', sentence) and
         re.search(r'(教授|清华|老师)', sentence)):
         return True
 
     return False
 
 
-if profanity_block("陆老师就是个骗子"):
+if profanity_block("陆老师不配当教授"):
     print("True")
 else:
     print("False")
