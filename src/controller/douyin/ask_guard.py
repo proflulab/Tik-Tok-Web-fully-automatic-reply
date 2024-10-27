@@ -17,7 +17,7 @@ import time
 def ask_guard():  # 获取用户在抖音直播间发送的信息
 
     while True:
-        # 查询 question_time 最小且 question_judgment 为空的一条数据
+        # 查询 question_time 最小且 question_judgment 为 1，answer_content 为空，profanity_block 为 0 的一条数据
         query = """
         SELECT *
         FROM scores

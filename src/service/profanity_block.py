@@ -51,10 +51,9 @@ def profanity_block(sentence):
     return False
 
 
-if profanity_block("去踏马死吧"):
-    print("True")
-else:
-    print("False")
-
-
-print(profanity_block)
+# if profanity_block("去踏马死吧"):
+#     print("True")
+# else:
+#     print("False")
+#
+# print(profanity_block)
