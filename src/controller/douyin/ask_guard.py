@@ -38,8 +38,13 @@ def ask_guard():  # 获取用户在抖音直播间发送的信息
 
                 # 更新表中的数据
                 table_name = "scores"
-                set_columns = {"question_judgment": True}
                 conditions = {"id": result[0][0]}
+
+                if profanity_block(result[0][3]):
+                    set_columns = {"question_judgment": True, "profanity_block": True}
+                else:
+                    set_columns = {"question_judgment": True, "profanity_block": False}
+
                 # 调用 update 方法
                 db.update(table_name, set_columns, conditions)
 
