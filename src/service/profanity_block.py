@@ -24,13 +24,17 @@ def profanity_block(sentence):
     if any(phrase in lower_sentence for phrase in profanity_phrases):
         return True
 
+    # 检查“去...死”模式，允许任意字符（包括汉字、空格等）
+    if re.search(r'去.+?死', lower_sentence):
+        return True
+
     # 检查是否包含讽刺短语
     if any(phrase in lower_sentence for phrase in irony_phrases):
         return True
 
     # 检查是否包含“陆老师”或“陆向谦”或“清华教授”并且包含“骗子”
-    if (re.search(r'(陆老师|陆向谦|清华教授).*骗子', sentence) or
-        re.search(r'骗子.*(陆老师|陆向谦|清华教授)', sentence)):
+    if (re.search(r'(陆|向谦|教授|清华).*骗子', sentence) or
+        re.search(r'骗子.*(陆|向谦|教授|清华)', sentence)):
         return True
 
     # 检查是否包含“陆老师”或“陆向谦”或“清华教授”，并且包含“没有”或“不是”，并包含“教授”、“清华”或“老师”
@@ -39,10 +43,14 @@ def profanity_block(sentence):
         re.search(r'(教授|清华|老师)', sentence)):
         return True
 
+    # 检查是否包含“这个课”，“陆老师”并包含“没用”、“垃圾”或“骗人”
+    if re.search(r'(这个课|课程|陆|向谦|教授|清华)', sentence) and re.search(r'(没用|垃圾|骗人)', sentence):
+        return True
+
     return False
 
 
-if profanity_block("陆老师不配当教授"):
+if profanity_block("去踏马死吧"):
     print("True")
 else:
     print("False")
