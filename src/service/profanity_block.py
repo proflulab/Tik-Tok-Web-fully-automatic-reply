@@ -1,5 +1,6 @@
 import re
 
+
 def profanity_block(sentence):
     # 检查输入是否为空值
     if not sentence or not sentence.strip():

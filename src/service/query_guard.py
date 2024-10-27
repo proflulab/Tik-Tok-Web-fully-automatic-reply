@@ -32,16 +32,8 @@ def query_guard_own(sentence):
                         "可不可以",
                         "你觉得", "你怎么看", "行了吧", "aren't you", "isn't it", "could it be", "how about"]
 
-    # 过滤侮辱性或无意义的短语
-    non_question_phrases = ["你妈的", "去死", "傻逼", "你丫的", "他妈的", "草你妈", "日你妈", "傻b", "智障",
-                            "混蛋", "混账", "滚蛋", "fuck", "shit", "idiot"]
-
     # 转换为小写字母进行检查（英文部分）
     lower_sentence = sentence.lower()
-
-    # 检查是否包含侮辱性或无意义的短语
-    if any(phrase in lower_sentence for phrase in non_question_phrases):
-        return False
 
     # 检查是否包含常见的问句短语
     if any(phrase in lower_sentence for phrase in question_phrases):
