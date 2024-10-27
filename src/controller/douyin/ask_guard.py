@@ -42,6 +42,7 @@ def ask_guard():  # 获取用户在抖音直播间发送的信息
 
                 if profanity_block(result[0][3]):
                     set_columns = {"question_judgment": True, "profanity_block": True}
+                    print("已屏蔽这段脏话")
                 else:
                     set_columns = {"question_judgment": True, "profanity_block": False}
 

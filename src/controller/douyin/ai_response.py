@@ -32,7 +32,9 @@ def ai_response():  # 获取用户在抖音直播间发送的信息
         query = """
         SELECT *
         FROM scores
-        WHERE question_judgment = 1 AND (answer_content IS NULL OR answer_content = '')
+        WHERE question_judgment = 1
+          AND (answer_content IS NULL OR answer_content = '')
+          AND profanity_block = 0
         ORDER BY question_time ASC
         LIMIT 1;
         """
