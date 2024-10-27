@@ -148,8 +148,8 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
                         unique_id = str(uuid.uuid4())
 
                         from main import db
-                        sql_text = "INSERT INTO scores VALUES(?, ?, ?, ?, ?, ?, ?)"
-                        db.execute_query(sql_text, (unique_id, username, time.time(), comment, '', '', ''))
+                        sql_text = "INSERT INTO scores VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
+                        db.execute_query(sql_text, (unique_id, username, time.time(), comment, '', '', '', ''))
 
                     except Exception as inner_e:
                         # 如果在尝试获取用户名或评论时出错，继续到下一个元素

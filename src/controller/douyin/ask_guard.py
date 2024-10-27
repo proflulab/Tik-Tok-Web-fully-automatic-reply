@@ -10,6 +10,7 @@ Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
 '''
 
 from src.service.query_guard import query_guard_own
+from src.service.profanity_block import profanity_block
 import time
 
 

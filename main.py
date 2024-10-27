@@ -30,6 +30,7 @@ if __name__ == '__main__':
         question_time TEXT,
         comment_content TEXT,
         question_judgment BOOLEAN,
+        profanity_block BOOLEAN,
         message_sent BOOLEAN,
         answer_content TEXT
     );
