@@ -10,13 +10,14 @@ Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
 '''
 
 from src.service.query_guard import query_guard_own
+from src.service.profanity_block import profanity_block
 import time
 
 
 def ask_guard():  # 获取用户在抖音直播间发送的信息
 
     while True:
-        # 查询 question_time 最小且 question_judgment 为空的一条数据
+        # 查询 question_time 最小且 question_judgment 为 1，answer_content 为空，profanity_block 为 0 的一条数据
         query = """
         SELECT *
         FROM scores
@@ -37,8 +38,14 @@ def ask_guard():  # 获取用户在抖音直播间发送的信息
 
                 # 更新表中的数据
                 table_name = "scores"
-                set_columns = {"question_judgment": True}
                 conditions = {"id": result[0][0]}
+
+                if profanity_block(result[0][3]):
+                    set_columns = {"question_judgment": True, "profanity_block": True}
+                    print("已屏蔽这段脏话")
+                else:
+                    set_columns = {"question_judgment": True, "profanity_block": False}
+
                 # 调用 update 方法
                 db.update(table_name, set_columns, conditions)
 
