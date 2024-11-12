@@ -1,34 +1,34 @@
-'''
-Author: 杨仕明 shiming.y@qq.com, 宋明轩 songmingxuan936@gmail.com
-Date: 2024-08-30 22:32:42
-LastEditors: 宋明轩 songmingxuan936@gmail.com
-LastEditTime: 2024-09-17 22:24:53
-FilePath: /Tik-Tok-Web-fully-automatic-reply/src/controller/douyin/ai_response.py
-Description:
-
-Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
-'''
-
+import random
+import time
+import os
+from dotenv import load_dotenv
 from src.service.coze import CozeChatService
 from src.controller.browser.selenium_driver import SeleniumWrapper
 from src.controller.douyin.get_comments import remove_non_bmp_characters
-import time
-import os
 
-from dotenv import load_dotenv
 load_dotenv()
 
 COZE_BOT_ID = os.getenv('COZE_BOT_ID') or '7368796970410459174'
 COZE_AUTH = os.getenv('COZE_AUTH') or '*****'
 
-# 没有环境变量 SEND_MESSAGE 的时候返回 False，如果有这个变量，根据其内容返回布尔值
+# 如果环境变量SEND_MESSAGE为True，则启用消息发送
 Send_Message = os.getenv('SEND_MESSAGE', 'False').lower() == 'true'
 
+WELCOME_MESSAGES = [
+    "新进直播间的朋友们，左上角点个关注，不错过陆老师的每场直播",
+    "左上角加个粉丝灯牌，下次陆老师讲干货的时候，就会自动推送给您。",
+    "请把直播间转发给您需要的亲友，帮他们提供最前沿的教育方法。",
+    "大家有问题可以打在评论区跟陆老师互动哈",
+    "大家想拍的抓紧了,今天直播间拍有特价,原价8880元,直播间优惠2000元",
+    "寒假AI训练营开售啦! 12月份批次的12月14日开始,1月份批次的1月18日开始,四周24次课",
+    "今天陆老师专场和您畅聊如何培养少年英才，您可以发上来您对孩子教育的思考，或者孩子的具体情况",
+]
 
 def ai_response():  # 获取用户在抖音直播间发送的信息
+    last_welcome_time = time.time()  # 初始化上次发送欢迎消息的时间
 
     while True:
-        # 查询 question_time 最小且 question_judgment 为空的一条数据
+        # 查询数据库中满足条件的消息
         query = """
         SELECT *
         FROM scores
@@ -38,11 +38,16 @@ def ai_response():  # 获取用户在抖音直播间发送的信息
         ORDER BY question_time ASC
         LIMIT 1;
         """
-
         from main import db
-
         result = db.fetch_all(query)
 
+        # 检查是否到了发送欢迎消息的时间
+        current_time = time.time()
+        if current_time - last_welcome_time >= random.randint(240, 360):  # 每4到6分钟发送一次
+            send_welcome_message()  # 调用发送欢迎消息的函数
+            last_welcome_time = current_time  # 更新上次发送欢迎消息的时间
+
+        # 处理数据库中未回复的消息
         if result:
             print("The record with the minimum question_time and a NULL question_judgment is:")
             print(result)
@@ -53,44 +58,45 @@ def ai_response():  # 获取用户在抖音直播间发送的信息
 
             coze_service = CozeChatService(bot_id, user_id, api_token)
 
-            # Send a message and get the reply
+            # 发送用户问题并获取回复
             try:
                 response = coze_service.send_and_get_reply(result[0][3])
                 print("Full Conversation Response:")
-                # print(f"Customer service robot reply : {response}")
 
-                # 将回复发送到抖音
+                # 拼接回复格式并发送到抖音
                 if Send_Message:
-                    # 将 response 拼接成 "@username，response" 格式
                     response_sent = f"@{result[0][1]}, {response[0]}"
-
-                    # 删除特殊符号，防止发送错误
                     response_sent = remove_non_bmp_characters(response_sent)
-                    # print(f"删除特殊符号的回复 : {response}")
 
                     wrapper = SeleniumWrapper("DOUYIN", headless=False)
-                    wrapper.send_message(response_sent)  # 发送到抖音
-
-                    # 用于判断是否发送信息到抖音-这里是已发送
+                    wrapper.send_message(response_sent)
                     is_message_sent = True
-
                 else:
-                    # 用于判断是否发送信息到抖音-这里是未发送
                     is_message_sent = False
 
-                # 更新表中的数据
+                # 更新数据库记录
                 table_name = "scores"
                 set_columns = {"answer_content": response[0], "message_sent": is_message_sent}
                 conditions = {"id": result[0][0]}
-                # 调用 update 方法
                 db.update(table_name, set_columns, conditions)
 
             except Exception as e:
                 print(f"An error occurred: {e}")
-
         else:
             print("No records found with answer_content as NULL.")
             time.sleep(1)
 
-        # 关闭数据库连接
-        # db.close_connection()
+def send_welcome_message():
+    # 随机选择一条欢迎消息
+    welcome_message = random.choice(WELCOME_MESSAGES)
+    
+    # 发送欢迎消息到直播间
+    if Send_Message:
+        wrapper = SeleniumWrapper("DOUYIN", headless=False)
+        try:
+            wrapper.send_message(welcome_message)
+            print(f"欢迎消息已发送：{welcome_message}")
+        except Exception as e:
+            print(f"发送欢迎消息时发生错误: {e}")
+    else:
+        print("Send_Message 环境变量为 False, 未发送欢迎消息")
