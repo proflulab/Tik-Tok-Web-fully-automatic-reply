@@ -17,11 +17,12 @@ import time
 def ask_guard():  # 获取用户在抖音直播间发送的信息
 
     while True:
-        # 查询 question_time 最小且 question_judgment 为 1，answer_content 为空，profanity_block 为 0 的一条数据
+        # 查询 question_time 最小且 question_judgment 为空的一条数据 和 auto_block 为 0 或空值的一条数据
         query = """
         SELECT *
         FROM scores
-        WHERE question_judgment IS NULL OR question_judgment = ''
+        WHERE (question_judgment IS NULL OR question_judgment = '')
+          AND (auto_block IS NULL OR auto_block = '' OR auto_block = 0)
         ORDER BY question_time ASC
         LIMIT 1;
         """
@@ -41,10 +42,17 @@ def ask_guard():  # 获取用户在抖音直播间发送的信息
                 conditions = {"id": result[0][0]}
 
                 if profanity_block(result[0][3]):
-                    set_columns = {"question_judgment": True, "profanity_block": True}
-                    print("已屏蔽这段脏话")
+                    # 判断是否存在侮辱性词语
+
+                    # 将用户信息储存到黑名单里面
+                    from main import db_blacklist
+                    sql_text = "INSERT INTO scores VALUES(?, ?, ?, ?, ?, ?, ?)"
+                    db_blacklist.execute_query(sql_text, (result[0][0], result[0][1], result[0][2], result[0][3], True, "", ""))
+
+                    set_columns = {"question_judgment": True, "auto_block": True}
+                    print("已屏蔽这段脏话，并拉入黑名单")
                 else:
-                    set_columns = {"question_judgment": True, "profanity_block": False}
+                    set_columns = {"question_judgment": True, "auto_block": False}
 
                 # 调用 update 方法
                 db.update(table_name, set_columns, conditions)

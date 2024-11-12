@@ -20,6 +20,9 @@ from src.controller.douyin.ai_response import ai_response
 db = SQLiteHelper("src/public/db_data/data.db")
 db.create_connection()
 
+db_blacklist = SQLiteHelper("src/public/db_blacklist/blacklist.db")
+db_blacklist.create_connection()
+
 if __name__ == '__main__':
 
     # 创建数据库的存储数据类型
@@ -30,12 +33,26 @@ if __name__ == '__main__':
         question_time TEXT,
         comment_content TEXT,
         question_judgment BOOLEAN,
-        profanity_block BOOLEAN,
+        auto_block BOOLEAN,
         message_sent BOOLEAN,
         answer_content TEXT
     );
     """
+
+    sql_blacklist_text = """
+    CREATE TABLE scores (
+        id TEXT,
+        username TEXT,
+        question_time TEXT,
+        comment_content TEXT,
+        auto_block BOOLEAN,
+        douyin BOOLEAN,
+        wechat_channel BOOLEAN
+    );
+    """
+
     db.execute_query(sql_text)
+    db_blacklist.execute_query(sql_blacklist_text)
 
     thread1 = threading.Thread(target=get_comments, name="MonitorScreen")
     thread2 = threading.Thread(target=ask_guard, name="ask_guard")

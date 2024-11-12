@@ -15,6 +15,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from src.controller.browser.selenium_driver import SeleniumWrapper
+from src.service.blacklist import check_black
 
 # from src.service.db.sqlite import SQLiteHelper
 
@@ -134,9 +135,8 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
                         #         print("这条信息不是机器人发送的")
 
                         if is_robot_reply(comment, 4):
+                            print("这条信息是机器人发送的")
                             continue
-                        else:
-                            print("这条信息不是机器人发送的")
 
                         # 将新数据作为新行添加到 data_list 中
                         data_list.append([username, comment, "", ""])
@@ -147,9 +147,16 @@ def get_comments():  # 获取用户在抖音直播间发送的信息
                         # 生成唯一的 UUID
                         unique_id = str(uuid.uuid4())
 
+                        # 检查黑名单是否存在该用户
+                        if check_black(username):
+                            check_blacklist = check_black(username)
+                            # print(check_blacklist)
+                        else:
+                            check_blacklist = ""
+
                         from main import db
                         sql_text = "INSERT INTO scores VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
-                        db.execute_query(sql_text, (unique_id, username, time.time(), comment, '', '', '', ''))
+                        db.execute_query(sql_text, (unique_id, username, time.time(), comment, '', check_blacklist, '', ''))
 
                     except Exception as inner_e:
                         # 如果在尝试获取用户名或评论时出错，继续到下一个元素
